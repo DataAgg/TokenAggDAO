@@ -1,18 +1,21 @@
 import { createApp } from 'vue';
-import { setupAssets } from './plugins';
+import { setupAssets, setupi18n } from './plugins';
 import { setupStore } from './stores';
 import { setupRouter } from './router';
+import { createHead } from "@vueuse/head";
 import App from './App.vue';
 
 async function setupApp() {
   // import assets: js、css
   setupAssets();
-
   // create app instance
   const app = createApp(App);
+	const head = createHead();
 
   // install store plugin: pinia
   setupStore(app);
+	setupi18n(app);
+	app.use(head);
 
   // vue router
   await setupRouter(app);

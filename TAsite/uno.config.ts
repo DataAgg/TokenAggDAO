@@ -5,6 +5,7 @@ export default defineConfig({
   exclude: ['node_modules', '.git', '.husky', '.vscode', 'dist', 'public', 'build', 'mock', './stats.html'],
   presets: [presetWind({ dark: 'class' })],
   shortcuts: {
+		'wtext1':'bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500',
     'wh-full': 'w-full h-full',
     'flex-center': 'flex justify-center items-center',
     'flex-col-center': 'flex-center flex-col',

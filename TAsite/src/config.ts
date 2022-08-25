@@ -20,16 +20,16 @@ export const SITE = {
 		]},
 		{name:'Resources', items:[
 			{name:'Documentation', link:'/about'},
-			{name:'Tutorials & Guides', link:'/about'},
+			{name:'TutorialsGuides', link:'/about'},
 			{name:'Blog', link:'/about'},
-			{name:'Support Center', link:'/about'},
+			{name:'SupportCenter', link:'/about'},
 			{name:'Partners', link:'/about'},
 		]},
 		{name:'Company', items:[
-			{name:'About us', link:'/about'},
-			{name:'Company values', link:'/about'},
+			{name:'AboutUs', link:'/about'},
+			{name:'CompanyValues', link:'/about'},
 			{name:'Pricing', link:'/about'},
-			{name:'Privacy Policy', link:'/about'},
+			{name:'PrivacyPolicy', link:'/privacy'},
 		]},
 	],
 	links: {

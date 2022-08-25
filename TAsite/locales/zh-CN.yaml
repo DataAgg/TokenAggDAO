@@ -1,0 +1,52 @@
+copyright:
+  full: Copyright© 2022年 DataAgg.版权所有.
+  p1: Copyright© 2022年
+  p2: DataAgg
+  p3: 版权所有.
+projects:
+  name: TokenAgg DAO
+  description: 我们致力于研发、提供基于DAO的区块链项目综合服务平台。提高项目研发效率，降低运营管理成本，汇聚优秀项目方、团队/人才深度合作，形成多种支撑和延展，充分整合资源，实现跨界融合，构建立体全方位的项目综合服务生态圈，成为新一代区块链产业价值链的组织者。
+  slogan: 社区自治的区块链项目综合服务平台
+  slogan1: 社区自治的
+  slogan2: 区块链项目
+  slogan3: 综合服务平台
+home:
+  getToken: 获取代币
+  LearnMore: 详细说明
+menus:
+  Products: 产品
+  Products1: Products1
+  Products2: Products2
+  Products3: Products3
+  Products4: Products4
+  Products5: Products5
+  Products6: Products6
+  Resources: 资源
+  Documentation: 文档
+  TutorialsGuides: 教程
+  Blog: 博客
+  SupportCenter: 帮助中心
+  Partners: 合作伙伴
+  Company: 公司
+  AboutUs: 关于我们
+  CompanyValues: 公司价值
+  Pricing: 价格
+  PrivacyPolicy: 隐私条款
+faq:
+  name: 常见问题
+  q1: 问题1
+  a1: 回答1
+  q2: 问题2
+  a2: 回答2
+  q3: 问题3
+  a3: 回答3
+  q4: 问题4
+  a4: 回答4
+  q5: 问题5
+  a5: 回答5
+  q6: 问题6
+  a6: 回答6
+errors:
+  not-found:
+    title: Halaman Tidak Ditemukan
+    description: Waduh! Halaman yang Anda cari tidak ada di server kami.

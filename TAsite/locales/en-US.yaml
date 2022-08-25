@@ -1,0 +1,7 @@
+copyright: Copyright &copy; {year} - PT. Creasi Tekno Solusi
+projects:
+  description: Community autonomous blockchain project comprehensive service platform
+errors:
+  not-found:
+    title: Halaman Tidak Ditemukan
+    description: Waduh! Halaman yang Anda cari tidak ada di server kami.
