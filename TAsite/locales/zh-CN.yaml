@@ -32,6 +32,23 @@ menus:
   CompanyValues: 公司价值
   Pricing: 价格
   PrivacyPolicy: 隐私条款
+features:
+  title: Components
+  title2: Most used widgets
+  subTitle: Components
+  feature1Title: feature1Title
+  feature1Description: feature1Title
+  feature2Title: feature2Title
+  feature2Description: feature2Title
+  feature3Title: feature3Title
+  feature3Description: feature3Title
+  feature4Title: feature4Title
+  feature4Description: feature4Title
+  feature5Title: feature5Title
+  feature5Description: feature5Title
+  feature6Title: feature6Title
+  feature6Description: feature6Title
+
 faq:
   name: 常见问题
   q1: 问题1
