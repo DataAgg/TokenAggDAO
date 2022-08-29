@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@iconify-json/akar-icons': ^1.1.8
   '@iconify-json/mdi': ^1.1.31
   '@iconify/vue': ^3.2.1
   '@intlify/vite-plugin-vue-i18n': ^6.0.1
@@ -8,7 +9,6 @@ specifiers:
   '@types/markdown-it': ^12.2.3
   '@types/markdown-it-link-attributes': ^3.0.1
   '@types/node': ^18.7.13
-  '@unocss/preset-icons': ^0.45.13
   '@unocss/preset-wind': ^0.45.13
   '@vitejs/plugin-vue': ^3.0.3
   '@vitejs/plugin-vue-jsx': ^2.0.0
@@ -48,6 +48,7 @@ dependencies:
   vue-router: 4.1.5_vue@3.2.37
 
 devDependencies:
+  '@iconify-json/akar-icons': 1.1.8
   '@iconify-json/mdi': 1.1.31
   '@iconify/vue': 3.2.1_vue@3.2.37
   '@intlify/vite-plugin-vue-i18n': 6.0.1_vite@3.0.9+vue-i18n@9.2.2
@@ -55,7 +56,6 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/markdown-it-link-attributes': 3.0.1
   '@types/node': 18.7.13
-  '@unocss/preset-icons': 0.45.13
   '@unocss/preset-wind': 0.45.13
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
   '@vitejs/plugin-vue-jsx': 2.0.0_vite@3.0.9+vue@3.2.37
@@ -1432,6 +1432,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/akar-icons/1.1.8:
+    resolution: {integrity: sha512-ip0q7oG8bKAmvTUiSzVGlsKCiVFbyQJS1Zl5jfBnXMXu8iBLf5KwLEOYWbg2Xj85KyOteZ1iG3cvEQipZv4iiA==}
+    dependencies:
+      '@iconify/types': 1.1.0
     dev: true
 
   /@iconify-json/mdi/1.1.31:

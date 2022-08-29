@@ -12,8 +12,7 @@ const { t } = useI18n();
 						<span class="whitespace-nowrap">{{ t('projects.name') }}</span>
 					</h2>
 					<p class="text-xl text-gray-600 dark:text-slate-400">
-						Be very surprised by these huge fake numbers you are seeing on this
-						page. <br class="hidden md:inline" />Don't waste more time! :P
+						{{ t('projects.cta1') }}<br class="hidden md:inline" />{{ t('projects.cta2') }}
 					</p>
 
 					<div class="mt-6">

@@ -1,165 +1,89 @@
 <script setup lang="ts">
-//FIXME const {} = Astro.props;
+import { Icon } from '@iconify/vue';
+const { t } = useI18n();
 </script>
 <template>
 
-<section class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20 bg-blue-50 dark:bg-slate-800">
-<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-<p class="text-base text-blue-600 dark:text-blue-200 font-semibold tracking-wide uppercase">Features</p>
-<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4">
-What's interesting about <span
-class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500 whitespace-nowrap"
->AstroWind
-</span>
-</h2>
-<p class="max-w-3xl mx-auto sm:text-center text-xl text-gray-600 dark:text-slate-400">
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa
-quae.
-</p>
-</div>
-<div class="grid mx-auto space-y-6 md:grid-cols-2 md:space-y-0">
-<div class="space-y-8 sm:px-8">
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Integration with Tailwind CSS</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Ready-to-use Components</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Best Practices</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-</div>
-<div class="space-y-8 sm:px-8">
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Excelent Page Speed</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Frequently updated</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-<div class="flex flex-row max-w-md">
-<div class="mb-4 mr-4">
-<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" fill-rule="evenodd">
-<rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
-<g stroke-linecap="square" stroke-width="2">
-<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z"> </path>
-<path class="stroke-current text-blue-300" d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58">
-</path>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<div>
-<h3 class="mb-3 text-xl font-bold">Open to new ideas and contributions</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-risus tempus nulla.
-</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+	<section class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20 bg-blue-50 dark:bg-slate-800">
+		<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+			<p class="text-base text-blue-600 dark:text-blue-200 font-semibold tracking-wide uppercase">{{ t('features.title') }}</p>
+			<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4">
+				{{ t('features.title2') }}
+			</h2>
+			<p class="max-w-3xl mx-auto sm:text-center text-xl text-gray-600 dark:text-slate-400">{{ t('features.subTitle') }}
+			</p>
+		</div>
+		<div class="grid mx-auto space-y-6 md:grid-cols-2 md:space-y-0">
+			<div class="space-y-8 sm:px-8">
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature1Title') }} </h3>
+						<p> {{ t('features.feature1Description') }} </p>
+					</div>
+				</div>
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature3Title') }} </h3>
+						<p> {{ t('features.feature3Description') }} </p>
+					</div>
+				</div>
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature5Title') }} </h3>
+						<p> {{ t('features.feature5Description') }} </p>
+					</div>
+				</div>
+			</div>
+			<div class="space-y-8 sm:px-8">
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature2Title') }} </h3>
+						<p> {{ t('features.feature2Description') }} </p>
+					</div>
+				</div>
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature4Title') }} </h3>
+						<p> {{ t('features.feature4Description') }} </p>
+					</div>
+				</div>
+				<div class="flex flex-row max-w-md">
+					<div class="mb-4 mr-4">
+						<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+							<Icon icon="mdi:star-circle" class="w-12 h-12 text-blue-600" />
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-3 text-xl font-bold"> {{ t('features.feature6Title') }} </h3>
+						<p> {{ t('features.feature6Description') }} </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </template>

@@ -2,7 +2,6 @@
 const { t } = useI18n();
 </script>
 <template>
-
 	<section>
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 overflow-hidden">
 			<div class="py-12 md:py-20">
@@ -10,20 +9,10 @@ const { t } = useI18n();
 					<div class="flex flex-wrap md:-mx-8">
 						<div class="w-full lg:w-1/2 px-0 sm:px-8">
 							<div class="mb-12 lg:mb-0 pb-12 lg:pb-0 border-b lg:border-b-0">
-								<h2 class="mb-4 text-3xl lg:text-4xl font-bold font-heading">
-									Sed ac magna sit amet risus tristique interdum, at vel velit in
-									hac habitasse platea dictumst.
-								</h2>
-								<p class="mb-8 text-xl text-gray-600 dark:text-slate-400">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-									sagittis, quam nec venenatis lobortis, mi risus tempus nulla,
-									sed porttitor est nibh at nulla. Praesent placerat enim ut ex
-									tincidunt vehicula. Fusce sit amet dui tellus.
-								</p>
+								<h2 class="mb-4 text-3xl lg:text-4xl font-bold font-heading">{{ t('StepsFeatures.title') }} </h2>
+								<p class="mb-8 text-xl text-gray-600 dark:text-slate-400">{{ t('StepsFeatures.description') }} </p>
 								<div class="w-full">
-									<a class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold" href="https://github.com/onwidget/astrowind" target="_blank" rel="noopener">
-										{{ t('home.getToken') }}
-									</a>
+									<a class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold" href="https://github.com/onwidget/astrowind" target="_blank" rel="noopener"> {{ t('home.getToken') }} </a>
 								</div>
 							</div>
 						</div>
@@ -36,14 +25,8 @@ const { t } = useI18n();
 										</span>
 									</div>
 									<div class="px-4">
-										<h3 class="mb-4 text-xl font-semibold">
-											Responsive Elements
-										</h3>
-										<p class="text-gray-500 dark:text-gray-400">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Morbi sagittis, quam nec venenatis lobortis, mi risus tempus
-											nulla.
-										</p>
+										<h3 class="mb-4 text-xl font-semibold">{{ t('StepsFeatures.item1') }} </h3>
+										<p class="text-gray-500 dark:text-gray-400">{{ t('StepsFeatures.item1description') }} </p>
 									</div>
 								</li>
 								<li class="flex md:-mx-4">
@@ -53,12 +36,8 @@ const { t } = useI18n();
 										</span>
 									</div>
 									<div class="px-4">
-										<h3 class="mb-4 text-xl font-semibold">Flexible Team</h3>
-										<p class="text-gray-500 dark:text-gray-400">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Morbi sagittis, quam nec venenatis lobortis, mi risus tempus
-											nulla.
-										</p>
+										<h3 class="mb-4 text-xl font-semibold">{{ t('StepsFeatures.item2') }} </h3>
+										<p class="text-gray-500 dark:text-gray-400">{{ t('StepsFeatures.item2description') }} </p>
 									</div>
 								</li>
 								<li class="flex md:-mx-4">
@@ -68,12 +47,8 @@ const { t } = useI18n();
 										</span>
 									</div>
 									<div class="px-4">
-										<h3 class="mb-4 text-xl font-semibold">Ecologic Software</h3>
-										<p class="text-gray-500 dark:text-gray-400">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Morbi sagittis, quam nec venenatis lobortis, mi risus tempus
-											nulla.
-										</p>
+										<h3 class="mb-4 text-xl font-semibold">{{ t('StepsFeatures.item3') }} </h3>
+										<p class="text-gray-500 dark:text-gray-400">{{ t('StepsFeatures.item3description') }} </p>
 									</div>
 								</li>
 							</ul>

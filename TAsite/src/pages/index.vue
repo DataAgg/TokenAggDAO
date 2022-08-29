@@ -7,7 +7,6 @@
 		<Hero />
 		<BasicFeatures />
 		<StepsLeft />
-		<TwoColsFeatures />
 		<StepsFeatures />
 		<HighlightedPosts />
 		<BasicFAQs />

@@ -10,9 +10,14 @@ projects:
   slogan1: 社区自治的
   slogan2: 区块链项目
   slogan3: 综合服务平台
+  cta1: xxx
+  cta2: xxx
+
 home:
   getToken: 获取代币
   LearnMore: 详细说明
+  blogTitle: Blog
+  blogDescription: blogDescription
 menus:
   Products: 产品
   Products1: Products1
@@ -35,7 +40,8 @@ menus:
 features:
   title: Components
   title2: Most used widgets
-  subTitle: Components
+  subTitle:
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae.
   feature1Title: feature1Title
   feature1Description: feature1Title
   feature2Title: feature2Title
@@ -48,7 +54,29 @@ features:
   feature5Description: feature5Title
   feature6Title: feature6Title
   feature6Description: feature6Title
-
+StepsFeatures:
+  title: StepsFeatures
+  description: StepsFeaturesDescription
+  item1: StepsFeatures
+  item1description: StepsFeaturesDescription
+  item2: StepsFeatures
+  item2description: StepsFeaturesDescription
+  item3: StepsFeatures
+  item3description: StepsFeaturesDescription
+Steps:
+  item1: Step 1
+  item1description: Steps1Description
+  item2: Step 2
+  item2description: Steps2Description
+  item3: Step 3
+  item3description: Steps3Description
+  item4: Ready!
+  item4description: Steps3Description
+stats:
+  title1: stats1
+  title2: stats2
+  title3: stats3
+  title4: stats4
 faq:
   name: 常见问题
   q1: 问题1
