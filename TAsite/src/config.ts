@@ -9,15 +9,15 @@ export const SITE = {
 	],
 	allLinks:[
 		{name:'Products', items:[
-			{name:'Products1', link:'/solution1'},
-			{name:'Products2', link:'/solution2'},
-			{name:'Products3', link:'/solution3'},
+			{name:'Products1', link:'/#/solution1'},
+			{name:'Products2', link:'/#/solution2'},
+			{name:'Products3', link:'/#/solution3'},
 		]},
 		{name:'Company', items:[
-			{name:'AboutUs', link:'/teams'},
-			{name:'CompanyValues', link:'/intro'},
-			{name:'Story', link:'/story'},
-			{name:'PrivacyPolicy', link:'/privacy'},
+			{name:'AboutUs', link:'/#/teams'},
+			{name:'CompanyValues', link:'/#/intro'},
+			{name:'Story', link:'/#/story'},
+			{name:'PrivacyPolicy', link:'/#/privacy'},
 		]},
 	],
 	links: {

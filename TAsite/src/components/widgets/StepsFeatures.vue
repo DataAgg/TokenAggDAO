@@ -12,7 +12,7 @@ const { t } = useI18n();
 								<h2 class="mb-4 text-3xl lg:text-4xl font-bold font-heading">{{ t('StepsFeatures.title') }} </h2>
 								<p class="mb-8 text-xl text-gray-600 dark:text-slate-400">{{ t('StepsFeatures.description') }} </p>
 								<div class="w-full">
-									<a class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold" href="https://github.com/onwidget/astrowind" target="_blank" rel="noopener"> {{ t('home.getToken') }} </a>
+									<a class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold" href="#" target="_blank" rel="noopener"> {{ t('home.getToken') }} </a>
 								</div>
 							</div>
 						</div>

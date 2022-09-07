@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { setupAssets, setupi18n } from './plugins';
+import 'virtual:windi.css'
 import { setupStore } from './stores';
 import { setupRouter } from './router';
 import { createHead } from "@vueuse/head";

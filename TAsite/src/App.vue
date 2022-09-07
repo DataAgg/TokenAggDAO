@@ -2,8 +2,6 @@
 	<router-view />
 </template>
 <script setup lang="ts">
-import 'uno.css';
-import 'virtual:windi.css'
 import "@/assets/styles/base.css";
 import "@/assets/styles/tadao.scss";
 import { onMounted } from 'vue'

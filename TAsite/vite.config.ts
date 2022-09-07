@@ -7,7 +7,6 @@ import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite";
 import markdown from "vite-plugin-md";
 import meta from "@yankeeinlondon/meta-builder";
-import unocss from "unocss/vite";
 import pages from "vite-plugin-pages";
 import layouts from "vite-plugin-vue-layouts";
 import mdAnchor from "markdown-it-anchor";
@@ -148,7 +147,6 @@ export default defineConfig(() => {
 				compositionOnly: true,
 				include: [path.resolve(__dirname, "locales/**")],
 			}),
-			unocss(),
 		],
 		server: {
 			host: "0.0.0.0",

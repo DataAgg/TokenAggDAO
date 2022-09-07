@@ -1,15 +1,23 @@
 import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
+	shortcuts: {
+    'wtext1': 'bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500',
+    'vstack': 'flex flex-col',
+    'icon': 'w-6 h-6 fill-current',
+    'app': 'text-red',
+    'app-border': 'border-gray-200 dark:border-dark-300',
+  },
   extract: {
     include: ['index.html', 'src/**/*.{vue,html,js,ts}'],
     exclude: ['node_modules', '.git'],
   },
+	darkMode: 'class',
   plugins: [
     require('windicss/plugin/typography'),
     require('windicss/plugin/forms'),
   ],
-  safelist: ['prose', 'prose-sm', 'max-w-none'],
+  safelist: ['md-body', 'md-body-sm', 'max-w-none'],
   theme: {
     extend: {
       colors: {
@@ -26,4 +34,5 @@ export default defineConfig({
       },
     },
   },
-})
+});
+
