@@ -13,6 +13,7 @@ import mdAnchor from "markdown-it-anchor";
 import mdLinkAttr from "markdown-it-link-attributes";
 import WindiCSS from "vite-plugin-windicss";
 import type { RouteRecord } from "vue-router";
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineConfig(() => {
 	const rootPath = path.resolve(process.cwd());
@@ -108,7 +109,7 @@ export default defineConfig(() => {
 				extensions: ["vue", "md"],
 				extendRoute: (route: RouteRecord) => {
 					route.meta = Object.assign({}, routeMeta, route.meta);
-					console.log(route); // eslint-disable-line no-console
+					// console.log(route); // eslint-disable-line no-console
 					return route;
 				},
 			}),
@@ -129,6 +130,14 @@ export default defineConfig(() => {
 					"vue-router",
 					"vue/macros",
 					"vue",
+					{
+						'naive-ui': [
+							'useDialog',
+							'useMessage',
+							'useNotification',
+							'useLoadingBar'
+						]
+					}
 				],
 				vueTemplate: true,
 			}),
@@ -140,6 +149,7 @@ export default defineConfig(() => {
 				// allow auto import and register components used in markdown
 				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 				dts: "src/components.d.ts",
+				resolvers: [NaiveUiResolver()]
 			}),
 			// https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
 			i18n({
@@ -153,6 +163,7 @@ export default defineConfig(() => {
 			open: true,
 		},
 		build: {
+			cssCodeSplit: false,
 			brotliSize: false,
 			sourcemap: false,
 			commonjsOptions: {

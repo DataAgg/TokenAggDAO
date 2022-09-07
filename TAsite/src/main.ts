@@ -1,13 +1,20 @@
-import { createApp } from 'vue';
+import { createApp,defineCustomElement } from 'vue';
+import 'virtual:windi-devtools';
+import 'virtual:windi.css';
+import "@/assets/styles/base.css";
+import "@/assets/styles/tadao.scss";
 import { setupAssets, setupi18n } from './plugins';
-import 'virtual:windi.css'
 import { setupStore } from './stores';
 import { setupRouter } from './router';
 import { createHead } from "@vueuse/head";
 import App from './App.vue';
+import PageContent from "@/components/page-content.vue";
+
+export const ElPageContent = defineCustomElement(PageContent);
 
 async function setupApp() {
-  // import assets: js、css
+
+	// import assets: js、css
   setupAssets();
   // create app instance
   const app = createApp(App);

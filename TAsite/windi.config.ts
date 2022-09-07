@@ -3,7 +3,8 @@ import { defineConfig } from 'windicss/helpers'
 export default defineConfig({
 	shortcuts: {
     'wtext1': 'bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500',
-    'vstack': 'flex flex-col',
+		'btn':'inline-flex items-center justify-center rounded border border-transparent font-medium text-center text-base leading-snug transition py-3 px-6 shadow-lg ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2',
+    'wbtn1': 'btn text-white mb-4 sm:mb-0',
     'icon': 'w-6 h-6 fill-current',
     'app': 'text-red',
     'app-border': 'border-gray-200 dark:border-dark-300',

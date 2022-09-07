@@ -21,11 +21,11 @@ const { t } = useI18n();
 						</p>
 						<div class="max-w-none flex justify-center">
 							<div>
-								<a class="btn text-white mb-4 sm:mb-0 bg-blue-600 hover:bg-blue-800 font-bold" href="/" target="_blank" rel="noopener">{{ t('home.getToken') }}
+								<a class="wbtn1 bg-blue-600 hover:bg-blue-800 font-bold" href="/" target="_blank" rel="noopener">{{ t('home.getToken') }}
 								</a>
 							</div>
 							<div>
-								<a class="btn text-white mb-4 sm:mb-0 bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800 ml-4" href="/#/tokenaggdao">{{ t('home.LearnMore') }}
+								<a class="wbtn1 bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800 ml-4" href="/#/tokenaggdao">{{ t('home.LearnMore') }}
 								</a>
 							</div>
 						</div>

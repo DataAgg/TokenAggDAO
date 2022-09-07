@@ -16,7 +16,7 @@ const { t } = useI18n();
 					</p>
 
 					<div class="mt-6">
-						<a class="btn text-white bg-blue-600 hover:bg-blue-800 sm:mb-0 font-bold" :href="SITE.domain" target="_blank" rel="noopener">{{ t('home.getToken') }} </a>
+						<a class="wbtn1 bg-blue-600 hover:bg-blue-800 sm:mb-0 font-bold" :href="SITE.domain" target="_blank" rel="noopener">{{ t('home.getToken') }} </a>
 					</div>
 				</div>
 			</div>

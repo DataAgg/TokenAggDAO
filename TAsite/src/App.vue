@@ -2,10 +2,8 @@
 	<router-view />
 </template>
 <script setup lang="ts">
-import "@/assets/styles/base.css";
-import "@/assets/styles/tadao.scss";
-import { onMounted } from 'vue'
-const { locale } = useI18n()
+import { onMounted } from 'vue';
+const { locale } = useI18n();
 
 onMounted(() => {
 	if (
@@ -29,13 +27,6 @@ onMounted(() => {
     {
       rel: 'msapplication-TileColor',
       content: '#388370',
-    },
-  ],
-  link: [
-    {
-      rel: 'mask-icon',
-      color: '#388370',
-      href: '/assets/safari-pinned-tab.svg',
     },
   ],
 })
