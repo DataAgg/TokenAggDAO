@@ -54,7 +54,7 @@ export default defineConfig(() => {
 			// https://github.com/antfu/vite-plugin-md
 			markdown({
 				wrapperComponent: 'page-content',
-				wrapperClasses: 'prose max-w-none',
+				wrapperClasses: 'md-body max-w-none',
 				headEnabled: true,
 				excerpt: true,
 				style: {

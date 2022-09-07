@@ -38,10 +38,10 @@ const tgDark = function (elem: any) {
 			</div>
 			<nav class="items-center w-full md:w-auto hidden md:flex text-gray-600 dark:text-slate-200" aria-label="Main navigation" id="menu">
 				<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center collapse w-full md:w-auto collapsed text-xl md:text-base">
-					<li v-for="(item, idx) in SITE.menus" :key="idx">
+					<!-- <li v-for="(item, idx) in SITE.menus" :key="idx">
 						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" :aria-label="item.name" :href="item.link">{{ item.name }}
 						</a>
-					</li>
+					</li> -->
 					<li class="md:hidden">
 						<a class="font-bold hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" :href="SITE.links.Github" target="_blank">
 							Github

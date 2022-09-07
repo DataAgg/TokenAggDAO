@@ -6,12 +6,10 @@
 	<main>
 		<Hero />
 		<BasicFeatures />
-		<StepsLeft />
 		<StepsFeatures />
+		<Stats />
 		<HighlightedPosts />
 		<BasicFAQs />
-		<Stats />
-		<BasicCTA />
 	</main>
 	<Footer />
 </template>

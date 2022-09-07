@@ -5,6 +5,7 @@
 import 'uno.css';
 import 'virtual:windi.css'
 import "@/assets/styles/base.css";
+import "@/assets/styles/tadao.scss";
 import { onMounted } from 'vue'
 const { locale } = useI18n()
 
