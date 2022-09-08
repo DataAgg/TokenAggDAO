@@ -36,6 +36,8 @@ export default defineConfig(() => {
 				"vue-i18n",
 				"vue-router",
 				"vue",
+				"@kangc/v-md-editor/lib/theme/github.js",
+				// "@kangc/v-md-editor/lib/theme/vuepress.js",
 			],
 			exclude: ["vue-demi"],
 		},

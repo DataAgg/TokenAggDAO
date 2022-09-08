@@ -7,19 +7,19 @@ export const useAppStore = defineStore({
     paths: ['appStore'],
   },
   state: () => ({
-    locale: "zh-CN",
-		isDark: false,
+    _locale: "zh-CN",
+		_dark: false,
   }),
   getters: {
-    locale: state => state.locale,
-    dark: state => state.isDark
+    locale: state => state._locale,
+    dark: state => state._dark
   },
   actions: {
     upDark(data:boolean) {
-      this.isDark = data;
+      this._dark = data;
     },
 		upLocale(lang:string){
-			this.locale = lang;
+			this._locale = lang;
 		},
   }
 });
