@@ -1,16 +1,13 @@
-import { createApp,defineCustomElement } from 'vue';
+import { createApp } from 'vue';
 import 'virtual:windi-devtools';
 import 'virtual:windi.css';
 import "@/assets/styles/base.css";
 import "@/assets/styles/tadao.scss";
-import { setupAssets, setupi18n } from './plugins';
-import { setupStore } from './stores';
-import { setupRouter } from './router';
+import { setupAssets, setupi18n } from '@/plugins';
+import { setupStore } from '@/stores';
+import { setupRouter } from '@/router';
 import { createHead } from "@vueuse/head";
-import App from './App.vue';
-import PageContent from "@/components/page-content.vue";
-
-export const ElPageContent = defineCustomElement(PageContent);
+import App from '@/App.vue';
 
 async function setupApp() {
 

@@ -1,8 +1,3 @@
----
-title: 隐私条款
-layout: default
----
-
 # Privacy agreement
 <hr />
 

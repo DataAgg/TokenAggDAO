@@ -12,12 +12,24 @@ projects:
   slogan3: 综合服务平台
   cta1: xxx
   cta2: xxx
-
+project:
+  info: 简介
+  plans: 计划
+  budgets: 预算
+  mans: 参与者
+  feeStates: 项目经费
+  vault: 项目金库
+  workingTasks: 正在做
+  finishedTasks: 已完成
+  pendingTasks: 未完成
+  tasks: 任务统计（正在做/已完成/未完成）
 home:
   getToken: 获取代币
   LearnMore: 详细说明
   blogTitle: 博客
   blogDescription: 更多
+  Projects: 项目
+  Profiles: 人才
 menus:
   Products: 解决方案
   Products1: 生鲜配送

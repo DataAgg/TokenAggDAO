@@ -1,34 +1,31 @@
 <template>
-	<router-view />
+	<n-config-provider :theme="appStore.dark?darkTheme:null">
+		<router-view />
+	</n-config-provider>
 </template>
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { darkTheme } from 'naive-ui';
+import { useAppStore } from '@/stores';
+
 const { locale } = useI18n();
 
-onMounted(() => {
-	if (
-		localStorage.theme === "dark" ||
-		(!("theme" in localStorage) &&
-			window.matchMedia("(prefers-color-scheme: dark)").matches)
-	) {
-		document.documentElement.classList.add("dark");
-	} else {
-		document.documentElement.classList.remove("dark");
-	}
+const appStore = useAppStore();
 
+onMounted(() => {
 	useHead({
-  htmlAttrs: {
-    lang: locale,
-  },
-  // bodyAttrs: {
-  //   class: bodyClass,
-  // },
-  meta: [
-    {
-      rel: 'msapplication-TileColor',
-      content: '#388370',
-    },
-  ],
-})
+		htmlAttrs: {
+			lang: locale,
+		},
+		// bodyAttrs: {
+		//   class: bodyClass,
+		// },
+		meta: [
+			{
+				rel: 'msapplication-TileColor',
+				content: '#388370',
+			},
+		],
+	})
 })
 </script>

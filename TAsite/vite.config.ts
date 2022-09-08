@@ -13,7 +13,7 @@ import mdAnchor from "markdown-it-anchor";
 import mdLinkAttr from "markdown-it-link-attributes";
 import WindiCSS from "vite-plugin-windicss";
 import type { RouteRecord } from "vue-router";
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 export default defineConfig(() => {
 	const rootPath = path.resolve(process.cwd());
@@ -53,8 +53,8 @@ export default defineConfig(() => {
 			}),
 			// https://github.com/antfu/vite-plugin-md
 			markdown({
-				wrapperComponent: 'page-content',
-				wrapperClasses: 'md-body max-w-none',
+				wrapperComponent: "page-content",
+				wrapperClasses: "md-body max-w-none",
 				headEnabled: true,
 				excerpt: true,
 				style: {
@@ -72,15 +72,7 @@ export default defineConfig(() => {
 				},
 
 				builders: [
-					meta({
-						routeProps: [
-							"layout",
-							"locale",
-							"container",
-							"title",
-							"description",
-						],
-					}),
+					meta(),
 				],
 				markdownItSetup(md: any) {
 					// md.use(mdPrism)
@@ -109,11 +101,10 @@ export default defineConfig(() => {
 				extensions: ["vue", "md"],
 				extendRoute: (route: RouteRecord) => {
 					route.meta = Object.assign({}, routeMeta, route.meta);
-					// console.log(route); // eslint-disable-line no-console
+					console.log(route); // eslint-disable-line no-console
 					return route;
 				},
 			}),
-
 
 			WindiCSS(),
 			// https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -131,13 +122,13 @@ export default defineConfig(() => {
 					"vue/macros",
 					"vue",
 					{
-						'naive-ui': [
-							'useDialog',
-							'useMessage',
-							'useNotification',
-							'useLoadingBar'
-						]
-					}
+						"naive-ui": [
+							"useDialog",
+							"useMessage",
+							"useNotification",
+							"useLoadingBar",
+						],
+					},
 				],
 				vueTemplate: true,
 			}),
@@ -149,7 +140,7 @@ export default defineConfig(() => {
 				// allow auto import and register components used in markdown
 				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 				dts: "src/components.d.ts",
-				resolvers: [NaiveUiResolver()]
+				resolvers: [NaiveUiResolver()],
 			}),
 			// https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
 			i18n({
