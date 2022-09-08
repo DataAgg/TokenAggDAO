@@ -36,10 +36,10 @@ const { t } = useI18n();
 					<li class="ml-4" v-for="(n, k, idx) in SITE.links" :key="idx">
 						<a class="flex justify-center items-center text-gray-600 hover:text-gray-700 dark:text-gray-400 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out dark:bg-gray-800 dark:text-gray-400 p-1.5"
 							:aria-label="k" :href="n" target="_blank">
-							<Icon icon="mdi:github" v-if="k == 'Github'" class="w-5 h-5"/>
-							<Icon icon="mdi:twitter" v-if="k == 'Twitter'" class="w-5 h-5"/>
-							<Icon icon="mdi:email" v-if="k == 'Email'" class="w-5 h-5"/>
-							<Icon icon="mdi:mirror" v-if="k == 'Mirror'" class="w-5 h-5"/>
+							<Icon icon="mdi:github" v-if="k == 'Github'" class="wicon-s"/>
+							<Icon icon="mdi:twitter" v-if="k == 'Twitter'" class="wicon-s"/>
+							<Icon icon="mdi:email" v-if="k == 'Email'" class="wicon-s"/>
+							<Icon icon="mdi:mirror" v-if="k == 'Mirror'" class="wicon-s"/>
 							<!-- <IconInstagram v-if="k=='Instagram'"/>
 							<IconFacebook v-if="k=='Facebook'"/> -->
 						</a>

@@ -17,7 +17,7 @@ const { t } = useI18n();
 				<div class="space-y-8">
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q1') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q1') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a1') }}
@@ -25,7 +25,7 @@ const { t } = useI18n();
 					</div>
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q3') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q3') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a3') }}
@@ -33,7 +33,7 @@ const { t } = useI18n();
 					</div>
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q5') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q5') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a5') }}
@@ -43,7 +43,7 @@ const { t } = useI18n();
 				<div class="space-y-8">
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q2') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q2') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a2') }}
@@ -51,7 +51,7 @@ const { t } = useI18n();
 					</div>
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q4') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q4') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a4') }}
@@ -59,7 +59,7 @@ const { t } = useI18n();
 					</div>
 					<div>
 						<p class="mb-4 text-xl font-bold">
-							<Icon icon="akar-icons:arrow-down-right" class="w-7 h-7 text-blue-500 inline-block" />{{ t('faq.q6') }}
+							<Icon icon="akar-icons:arrow-down-right" class="wicon text-blue-500" />{{ t('faq.q6') }}
 						</p>
 						<p class="text-gray-700 dark:text-gray-400 mb-2">
 							{{ t('faq.a6') }}

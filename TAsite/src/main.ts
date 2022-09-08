@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import "virtual:windi-devtools";
 import "virtual:windi.css";
 import "@/assets/styles/base.css";
-import "@/assets/styles/tadao.scss";
 import { setupAssets, setupi18n } from "@/plugins";
 import { setupStore } from "@/stores";
 import { setupRouter } from "@/router";
@@ -15,6 +14,7 @@ import githubTheme from "@kangc/v-md-editor/lib/theme/github.js";
 import "@kangc/v-md-editor/lib/theme/style/github.css";
 import createMermaidPlugin from '@kangc/v-md-editor/lib/plugins/mermaid/cdn';
 import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn';
+import "@/assets/styles/tadao.scss";
 
 VMdPreview.use(githubTheme, { Hljs: hljs, });
 VMdPreview.use(createMermaidPlugin());

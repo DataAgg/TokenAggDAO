@@ -12,7 +12,7 @@ const { t } = useI18n();
 					<div class="flex flex-col items-center mr-4">
 						<div>
 							<div class="flex items-center justify-center w-10 h-10 rounded-full border-pink-500 border-2">
-								<Icon icon="akar-icons:arrow-down-thick" class="w-5 h-5" />
+								<Icon icon="akar-icons:arrow-down-thick" class="wicon-s" />
 							</div>
 						</div>
 						<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
@@ -26,7 +26,7 @@ const { t } = useI18n();
 					<div class="flex flex-col items-center mr-4">
 						<div>
 							<div class="flex items-center justify-center w-10 h-10 rounded-full border-pink-500 border-2">
-								<Icon icon="akar-icons:arrow-down-thick" class="w-5 h-5" />
+								<Icon icon="akar-icons:arrow-down-thick" class="wicon-s" />
 							</div>
 						</div>
 						<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
@@ -40,7 +40,7 @@ const { t } = useI18n();
 					<div class="flex flex-col items-center mr-4">
 						<div>
 							<div class="flex items-center justify-center w-10 h-10 rounded-full border-pink-500 border-2">
-								<Icon icon="akar-icons:arrow-down-thick" class="w-5 h-5" />
+								<Icon icon="akar-icons:arrow-down-thick" class="wicon-s" />
 							</div>
 						</div>
 						<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
@@ -54,7 +54,7 @@ const { t } = useI18n();
 					<div class="flex flex-col items-center mr-4">
 						<div>
 							<div class="flex items-center justify-center w-10 h-10 rounded-full border-blue-600 border-2">
-								<Icon icon="akar-icons:check" class="w-5 h-5" />
+								<Icon icon="akar-icons:check" class="wicon-s" />
 							</div>
 						</div>
 					</div>

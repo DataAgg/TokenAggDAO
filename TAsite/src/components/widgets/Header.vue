@@ -59,12 +59,12 @@ function tgDark(){
 						<button type="button"
 							class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
 							aria-label="Toggle between Dark and Light mode" data-aw-toggle-color-scheme @click="tgDark()">
-							<Icon icon="mdi:white-balance-sunny" class="w-5 h-5" />
+							<Icon icon="mdi:white-balance-sunny" class="wicon-s" />
 						</button>
 						<a :href="SITE.links.Github" target="_blank"
 							class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1"
 							aria-label="Github">
-							<Icon icon="mdi:github" class="w-5 h-5" />
+							<Icon icon="mdi:github" class="wicon-s" />
 						</a>
 					</div>
 				</div>

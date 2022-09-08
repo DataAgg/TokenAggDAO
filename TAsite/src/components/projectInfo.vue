@@ -1,8 +1,8 @@
 <template>
 	<Header />
 	<main>
-		<section class="max-w-6xl mx-auto px-4 sm:px-6">
-			<div class="py-6 md:py-10">
+		<section class="max-w-6xl mx-auto px-4 <sm:px-1">
+			<div class="md:py-6 sm:py-1">
 				<div class="text-3xl">{{projectInfo.title}}</div>
 				<div class="grid md:(grid-cols-3 p-2) sd:(grid-cols-1)">
 					<div class="flex flex-col justify-center">
@@ -25,32 +25,30 @@
 						</n-statistic>
 					</div>
 				</div>
-				<n-card>
-					<n-tabs type="line" animated default-value="plans">
-						<n-tab-pane name="info" :tab="t('project.info')">
-							<v-md-preview :text="pInfoData" />
-						</n-tab-pane>
-						<n-tab-pane name="plans" :tab="t('project.plans')">
-							<v-md-preview :text="testData" />
-							<div class="">
+				<n-tabs type="line" animated default-value="plans">
+					<n-tab-pane name="info" :tab="t('project.info')">
+						<v-md-preview :text="pInfoData" />
+					</n-tab-pane>
+					<n-tab-pane name="plans" :tab="t('project.plans')">
+						<v-md-preview :text="testData" />
+						<div class="">
 
 
-							</div>
-						</n-tab-pane>
-						<n-tab-pane name="budgets" :tab="t('project.budgets')">
-							<div class="">
+						</div>
+					</n-tab-pane>
+					<n-tab-pane name="budgets" :tab="t('project.budgets')">
+						<div class="">
 
 
-							</div>
-						</n-tab-pane>
-						<n-tab-pane name="mans" :tab="t('project.mans')">
-							<div class="">
+						</div>
+					</n-tab-pane>
+					<n-tab-pane name="mans" :tab="t('project.mans')">
+						<div class="">
 
 
-							</div>
-						</n-tab-pane>
-					</n-tabs>
-				</n-card>
+						</div>
+					</n-tab-pane>
+				</n-tabs>
 			</div>
 		</section>
 	</main>
