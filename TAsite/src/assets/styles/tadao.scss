@@ -2,12 +2,9 @@
 	background-color: transparent;
 }
 
-.github-markdown-body{
-	padding: 0;
-}
-
-.md-body {
+.md-body, .github-markdown-body {
 	z-index: inherit;
+	padding: 0;
 
 	.header-anchor {
 		text-decoration: none;
@@ -74,14 +71,19 @@
 	}
 }
 
-.dark .md-body {
+.dark .md-body, .dark .github-markdown-body {
 	color: rgba(156, 163, 175);
 
 	table{
 		border-collapse: collapse;
+		background-color: transparent;
+		tr{
+			background-color: transparent;
+		}
 		th,td{
 			border: 2px #3F3F46 solid;
 			padding: 2px;
+			background-color: transparent;
 		}
 	}
 	h1,
