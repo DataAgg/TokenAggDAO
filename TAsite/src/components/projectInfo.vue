@@ -28,7 +28,7 @@
 				<n-card>
 					<n-tabs type="line" animated default-value="plans">
 						<n-tab-pane name="info" :tab="t('project.info')">
-							<Project001 v-if="id == '001'" />
+							<v-md-preview :text="pInfoData" />
 						</n-tab-pane>
 						<n-tab-pane name="plans" :tab="t('project.plans')">
 							<v-md-preview :text="testData" />
@@ -57,7 +57,6 @@
 	<Footer />
 </template>
 <script setup lang="ts">
-import Project001 from '@/projects/project001.md';
 import axios from 'axios';
 
 const { t } = useI18n();
@@ -67,6 +66,7 @@ const id = route.params.id;
 const projectInfo = ref<any>({
 	description: ''
 });
+const pInfoData = ref<string>(``);
 const testData = ref<string>(`
 $$sum_{i=1}^n a_i=0$$
 
@@ -75,7 +75,7 @@ gantt
 	axisFormat  %m-%d
 	title 平台基础功能开发
 	section 详细设计
-		需求分析讨论	:m2t1,	2022-08-18,	3d
+		需求分析讨论	:m2t1,	20220818,	3d
 		v1功能模块详细设计	:m2t2,	after m2t1,	5d
 	section TAsite
 		TAsite基础框开发架搭建	:m2t3,	after m2t2,	5d
@@ -86,7 +86,7 @@ gantt
 		ProjectFactory数据展示与客户交互	:m2t8,	after m2t7,	3d
 		ProjectFactory的参与人相关功能	:m2t9,	after m2t7,	3d
 	section TAcontracts
-		TAcontracts基础框开发架搭建	:m2t10,	2022-08-25,	3d
+		TAcontracts基础框开发架搭建	:m2t10,	20220825,	3d
 		TADAO合约开发	:m2t11,	after m2t10,	1d
 		TANFT合约开发	:m2t12,	after m2t11,	2d
 		TAService合约开发	:m2t13,	after m2t12,	6d
@@ -122,6 +122,8 @@ const projectData = ref<any>({
 });
 
 onMounted(async () => {
+	const pInfoMd = await axios.get('/projects/project' + id + '.md');
+	pInfoData.value = pInfoMd.data.toString();
 	const pInfo = await axios.get('/projects/project' + id + '.json');
 	projectInfo.value = pInfo.data;
 	// const pData = await axios.get('/projects/project' + id + 'Data.json');
