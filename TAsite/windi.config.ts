@@ -7,6 +7,7 @@ export default defineConfig({
     'wbtn1': 'btn text-white mb-4 sm:mb-0',
     'wicon': 'w-7 h-7 inline-block',
     'wicon-s': 'w-5 h-5 inline-block',
+    'wtablecell': 'table-cell border p-1',
     'app': 'text-red',
     'app-border': 'border-gray-200 dark:border-dark-300',
   },

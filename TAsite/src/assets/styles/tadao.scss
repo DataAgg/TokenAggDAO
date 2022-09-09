@@ -1,8 +1,9 @@
-.n-card{
+.n-card {
 	background-color: transparent;
 }
 
-.md-body, .github-markdown-body {
+.md-body,
+.github-markdown-body {
 	z-index: inherit;
 	padding: 0;
 
@@ -13,12 +14,12 @@
 		visibility: hidden;
 	}
 
-	.language-mermaid{
+	.language-mermaid {
 		visibility: hidden;
 		display: none;
 	}
 
-	hr{
+	hr {
 		--tw-divide-y-reverse: 0;
 		border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
 		border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
@@ -26,31 +27,32 @@
 		margin-bottom: 3rem;
 	}
 
-	li{
+	li {
 		list-style-type: circle;
 		margin-left: 2.5rem;
 	}
 
-	h1{
+	h1 {
 		font-size: 2.5rem;
-    line-height: 1.5;
+		line-height: 1.5;
 		letter-spacing: 0.05em;
 	}
-	h2{
+	h2 {
 		font-size: 2rem;
-    line-height: 1.5;
+		line-height: 1.5;
 	}
-	h3{
+	h3 {
 		font-size: 1.5rem;
-    line-height: 1.5;
+		line-height: 1.5;
 	}
-	h4{
+	h4 {
 		font-size: 1rem;
-    line-height: 1.5;
+		line-height: 1.5;
 	}
-	table{
+	table {
 		border-collapse: collapse;
-		th,td{
+		th,
+		td {
 			border: 2px #d4d4d8 solid;
 			padding: 2px;
 		}
@@ -71,17 +73,19 @@
 	}
 }
 
-.dark .md-body, .dark .github-markdown-body {
-	color: rgba(156, 163, 175);
+.dark .md-body,
+.dark .github-markdown-body {
+	color: #9ca3af;
 
-	table{
+	table {
 		border-collapse: collapse;
 		background-color: transparent;
-		tr{
+		tr {
 			background-color: transparent;
 		}
-		th,td{
-			border: 2px #3F3F46 solid;
+		th,
+		td {
+			border: 2px #3f3f46 solid;
 			padding: 2px;
 			background-color: transparent;
 		}
@@ -90,6 +94,6 @@
 	h2,
 	h3,
 	h4 {
-		color: rgba(203, 213, 225);
+		color: #cbd5e1;
 	}
 }

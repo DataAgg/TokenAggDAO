@@ -16,7 +16,7 @@
 
 /*---滚动框背景样式--*/
 ::-webkit-scrollbar-track-piece {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #000000;
   border-radius: 0;
 }
 

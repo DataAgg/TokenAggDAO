@@ -23,6 +23,38 @@ project:
   finishedTasks: 已完成
   pendingTasks: 未完成
   tasks: 任务统计（正在做/已完成/未完成）
+tasktable:
+  no: ID
+  category: 分类
+  title: 任务名称/描述
+  summary: 耗时
+  status: 状态
+  status_finished: 已完成
+  status_working: 进行中
+  status_pending: 未开始
+  actions: 操作
+  sum: '合计'
+feetable:
+  no: ID
+  category: 功能模块
+  title: 名称/描述
+  manType: 人员类型
+  costMan: 人员
+  costTime: 工作量(人天)
+  costTotal: 价格
+feetable2:
+  no: ID
+  category: 细项
+  title: 规格
+  quantity: 数量
+  total: 总价
+  comments: 备注
+feetablesum:
+  no: ID
+  category: 类别
+  title: 细项
+  total: 费用
+
 home:
   getToken: 获取代币
   LearnMore: 详细说明
