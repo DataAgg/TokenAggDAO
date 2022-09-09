@@ -63,8 +63,6 @@ export class PlanProject {
 	manTypes: Array<ManType> = [];
 	sections: Array<PlanSection> = [];
 	feeCategories: Array<PlanFeeCategory> = [];
-	feeManagement: number = 0;
-	feeTaxes: number = 0;
 	total: number = 0;
 
 	constructor(
@@ -96,6 +94,7 @@ export class PlanSection {
 
 export class PlanSectionTxt {
 	mdTasks: Array<PlanTaskTxt> = [];
+	count: number = 0;
 	constructor(
 		public category: string,
 		public title: string,
@@ -116,14 +115,14 @@ export class PlanTaskTxt {
 	) {}
 }
 
-export class GroupData<T>{
+export class GroupData<T> {
 	public count: number = 0;
 	public sum: number = 0;
-	public items:Array<T> = [];
+	public items: Array<T> = [];
 
-	public addItem(item:T, num:number){
+	public addItem(item: T, num: number) {
 		this.count++;
-		this.sum+=num;
+		this.sum += num;
 		this.items.push(item);
 	}
 }
@@ -132,11 +131,9 @@ export class PlanProjectFeeTxt {
 	sections = new Map<string, GroupData<PlanTaskFeeTxt>>();
 	others = new Map<string, GroupData<PlanOtherFeeTxt>>();
 	mans = new Array<ManType>();
-	feeManagement: number = 0;
-	feeTaxes: number = 0;
 	totalTasksFee: number = 0;
 	totalOtherFee: number = 0;
-
+	total: number = 0;
 	constructor() {}
 }
 
@@ -156,7 +153,7 @@ export class PlanTaskFeeTxt {
 export class PlanOtherFeeTxt {
 	public quantity: number = 0;
 	public total: number = 0;
-	public comments: string = '';
+	public comments: string = "";
 	constructor(
 		public no: number,
 		public category: string,
@@ -208,7 +205,7 @@ export class PlanOtherFee {
 	// quantity:number;
 	// price:number = 0;
 	total: number = 0;
-	comments: string = '';
+	comments: string = "";
 
 	constructor(
 		public category: string,
@@ -221,9 +218,11 @@ export class PlanOtherFee {
 }
 
 export function parseProject(map: any): PlanProject {
-	var planProject = new PlanProject(map["title"], map["description"], map["unit"]);
-	planProject.feeManagement = map["feeManagement"] ?? 0;
-	planProject.feeTaxes = map["feeTaxes"] ?? 0;
+	var planProject = new PlanProject(
+		map["title"],
+		map["description"],
+		map["unit"]
+	);
 
 	var manTypes = map["manTypes"];
 	if (manTypes != null) {
@@ -332,11 +331,10 @@ export function calcTotal(planProject: PlanProject): void {
 		}
 		pTotal += feeCategory.total;
 	}
-	pTotal += planProject.feeManagement + planProject.feeTaxes;
 	planProject.total = pTotal;
 }
 
-export function genGantt(section: PlanSection, i: number = 1): PlanSectionTxt {
+export function genGantt(section: PlanSection, i: number = 1, start=1): PlanSectionTxt {
 	let planSectionTxt = new PlanSectionTxt(
 		section.category,
 		section.title,
@@ -366,18 +364,18 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionTxt {
 	planSectionTxt.summary = `时间：${day(section.start)} - ${day(
 		section.end
 	)}\t耗时：${section.days ?? 0}天`;
-
-	var j = 1;
+	var j = start;
 	for (var task of section.tasks) {
 		if (task?.description ?? "" != "") {
 			let planTaskTxt = new PlanTaskTxt(
-				j++,
+				++j,
 				task.category,
 				task.title,
 				task.description
 			);
 			planTaskTxt.summary = `${task.costMan}*${task.costTime}人天`;
 			planSectionTxt.mdTasks.push(planTaskTxt);
+			planSectionTxt.count++;
 		}
 	}
 	return planSectionTxt;
@@ -388,11 +386,14 @@ export function genAllPlanSections(
 ): Array<PlanSectionTxt> {
 	let allData = new Array<PlanSectionTxt>();
 	if (planProject && planProject.sections && planProject.sections.length > 0) {
+		var start = 0;
 		for (let i = 0; i < planProject.sections.length; i++) {
 			let section: PlanSection = planProject.sections[i];
-			let planSectionTxt = genGantt(section, i);
+			let planSectionTxt = genGantt(section, i, start);
+			start += planSectionTxt.count;
 			allData.push(planSectionTxt);
 		}
+
 	}
 	return allData;
 }
@@ -446,10 +447,8 @@ export function genAllFee(planProject: PlanProject): PlanProjectFeeTxt {
 		planProjectFeeTxt.others.set(feeCategory.category, otherFeeGroup);
 	}
 
-	if (planProject.feeManagement > 0 && planProject.feeTaxes > 0) {
-		planProjectFeeTxt.feeManagement = planProject.feeManagement;
-		planProjectFeeTxt.feeTaxes = planProject.feeTaxes;
-	}
+	planProjectFeeTxt.total =
+		planProjectFeeTxt.totalTasksFee + planProjectFeeTxt.totalOtherFee;
 	return planProjectFeeTxt;
 }
 

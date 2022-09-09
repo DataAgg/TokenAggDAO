@@ -30,8 +30,9 @@
 						<v-md-preview :text="pInfoData" />
 					</n-tab-pane>
 					<n-tab-pane name="plans" :tab="t('project.plans')">
-						<n-collapse v-if="projectSections.length>0" arrow-placement="right">
+						<n-collapse v-if="projectSections.length>0" arrow-placement="right" :default-expanded-names="[0]">
 							<n-collapse-item v-for="(section, idx) in projectSections" :key="idx" :title="section.title" :name="idx">
+								<template #header><span class="font-bold text-lg">[{{t('project.milestone')+(idx+1)}}]{{section.title}}</span></template>
 								<template #header-extra>{{section.summary}}</template>
 								<v-md-preview :text="section.mdGantt" />
 								{{section.description}}
@@ -48,7 +49,7 @@
 									</div>
 									<div class="table-row-group">
 										<div class="table-row" v-for="(task, idx) in section.mdTasks" :key="idx">
-											<div class="wtablecell">{{idx}}</div>
+											<div class="wtablecell">{{task.no}}</div>
 											<div class="wtablecell">{{task.category}}</div>
 											<div class="wtablecell">{{task.title}}
 												<div class="text-gray-500">{{task.description}}</div>
@@ -85,16 +86,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<template v-for="(data) in planProjectFeeTxt.sections">
+								<template v-for="(data,idx) in planProjectFeeTxt.sections">
 									<tr>
-										<td class="font-bold" colspan="6">{{data[0]}}</td>
+										<td class="font-bold" colspan="6" align="center">[{{t('project.milestone')+(idx+1)}}]{{data[0]}}</td>
 										<td class="font-bold" align="right">
 											<span class="font-bold mx-1">{{f.fixMoney(data[1].sum, 2, true)}}</span>{{planProject.unit}}
 										</td>
 									</tr>
 									<tr v-for="(task, idx) in data[1].items" :key="idx">
 										<td class="wtablecell">{{task.no}}</td>
-										<td class="wtablecell">{{task.category}}</td>
+										<td class="wtablecell" align="right">{{task.category}}</td>
 										<td class="wtablecell">{{task.title}}</td>
 										<td class="wtablecell font-medium">{{manTitle(task)}}</td>
 										<td class="wtablecell font-medium">{{task.costMan}}</td>
@@ -128,7 +129,7 @@
 							<tbody>
 								<template v-for="(data) in planProjectFeeTxt.others">
 									<tr>
-										<td class="font-bold" colspan="5">{{data[0]}}</td>
+										<td class="font-bold" colspan="5" align="center">{{data[0]}}</td>
 										<td class="font-bold" align="right">
 											<span class="font-bold mx-1">{{f.fixMoney(data[1].sum, 2, true)}}</span>{{planProject.unit}}
 										</td>
@@ -158,7 +159,7 @@
 							<tbody>
 								<tr v-for="(sdata, sidx) in planProjectFeeTxt.sections">
 									<td class="font-bold" :rowspan="planProjectFeeTxt.sections.size" v-if="sidx==0">平台开发</td>
-									<td class="wtablecell">{{sdata[0]}}</td>
+									<td class="wtablecell">[{{t('project.milestone')+(sidx+1)}}]{{sdata[0]}}</td>
 									<td class="wtablecell font-medium">{{f.fixMoney(sdata[1].sum, 2, true)}}</td>
 								</tr>
 								<tr v-for="(odata, oidx) in planProjectFeeTxt.others">
@@ -169,9 +170,9 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="2" class="font-bold" align="right">{{t('tasktable.sum')}}</td>
+									<td colspan="2" class="font-bold" align="right">{{t('project.sum')}}</td>
 									<td>
-										<span class="font-bold mx-1">{{f.fixMoney(planProjectFeeTxt.totalTasksFee+planProjectFeeTxt.totalOtherFee, 2, true)}}</span>{{planProject.unit}}
+										<span class="font-bold mx-1">{{f.fixMoney(planProjectFeeTxt.total, 2, true)}}</span>{{planProject.unit}}
 									</td>
 								</tr>
 							</tfoot>

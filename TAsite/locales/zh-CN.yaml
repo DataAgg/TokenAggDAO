@@ -23,6 +23,8 @@ project:
   finishedTasks: 已完成
   pendingTasks: 未完成
   tasks: 任务统计（正在做/已完成/未完成）
+  sum: '合计'
+  milestone: 里程碑
 tasktable:
   no: ID
   category: 分类
@@ -33,7 +35,6 @@ tasktable:
   status_working: 进行中
   status_pending: 未开始
   actions: 操作
-  sum: '合计'
 feetable:
   no: ID
   category: 功能模块
