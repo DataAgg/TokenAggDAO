@@ -62,7 +62,7 @@ export class ManType {
 export class PlanProject {
 	manTypes: Array<ManType> = [];
 	sections: Array<PlanSection> = [];
-	feeCategories: Array<PlanFeeCategory> = [];
+	feeCategories: Array<GroupData<PlanOtherFee>> = [];
 	total: number = 0;
 
 	constructor(
@@ -92,9 +92,42 @@ export class PlanSection {
 	) {}
 }
 
-export class PlanSectionTxt {
-	mdTasks: Array<PlanTaskTxt> = [];
+export class ProjectData {
+	public planProject: PlanProject;
+	public title: string;
+	public description: string = "";
+
+	workingTasks: number = 10;
+	finishedTasks: number = 20;
+	pendingTasks: number = 200;
+	used: string = "3,000";
+	needed: string = "123,000";
+	symbol1: string = "USDT";
+	vault: string = "200";
+	symbol2: string = "BNB";
+
+	sections = new Map<string, PlanSectionData>();
+	others = new Map<string, GroupData<PlanOtherFee>>();
+	mans = new Array<ManType>();
+	totalTasksFee: number = 0;
+	totalOtherFee: number = 0;
+	total: number = 0;
 	count: number = 0;
+	constructor() {
+		this.title = "";
+		this.planProject = new PlanProject("");
+	}
+
+	up(planProject: PlanProject) {
+		this.title = planProject.title;
+		this.description = planProject.description;
+		this.planProject = planProject;
+		this.mans = planProject.manTypes;
+	}
+}
+
+export class PlanSectionData {
+	tasks = new GroupData<PlanTask>();
 	constructor(
 		public category: string,
 		public title: string,
@@ -102,17 +135,18 @@ export class PlanSectionTxt {
 		public mdGantt: string = "",
 		public summary: string = ""
 	) {}
-}
 
-export class PlanTaskTxt {
-	status: number = 0;
-	constructor(
-		public no: number,
-		public category: string,
-		public title: string,
-		public description: string,
-		public summary: string = ""
-	) {}
+	public addTask(task: PlanTask) {
+		this.tasks.addItem(task, task.costTotal);
+	}
+
+	public fetchTask(no: number): PlanTask {
+		let pTaskData = this.tasks.items[no - 1];
+		if (pTaskData == undefined) {
+			throw new Error("task-" + no);
+		}
+		return pTaskData;
+	}
 }
 
 export class GroupData<T> {
@@ -127,41 +161,6 @@ export class GroupData<T> {
 	}
 }
 
-export class PlanProjectFeeTxt {
-	sections = new Map<string, GroupData<PlanTaskFeeTxt>>();
-	others = new Map<string, GroupData<PlanOtherFeeTxt>>();
-	mans = new Array<ManType>();
-	totalTasksFee: number = 0;
-	totalOtherFee: number = 0;
-	total: number = 0;
-	constructor() {}
-}
-
-export class PlanTaskFeeTxt {
-	public manType: number = 0;
-	public costMan: number = 0;
-	public costTime: number = 0;
-	public costTotal: number = 0;
-	constructor(
-		public no: number,
-		public category: string,
-		public title: string,
-		public description: string
-	) {}
-}
-
-export class PlanOtherFeeTxt {
-	public quantity: number = 0;
-	public total: number = 0;
-	public comments: string = "";
-	constructor(
-		public no: number,
-		public category: string,
-		public title: string,
-		public description: string
-	) {}
-}
-
 export class PlanTask {
 	// no:number;
 	// title:string;
@@ -173,7 +172,10 @@ export class PlanTask {
 	// costTime?:string;
 	// costMan?:number;
 	// manType?:number;
-	total: number = 0;
+	public costDays: number = 0;
+	public costTotal: number = 0;
+	public summary: string = "";
+	public status: number = 0;
 
 	constructor(
 		public no: number,
@@ -189,18 +191,9 @@ export class PlanTask {
 	) {}
 }
 
-export class PlanFeeCategory {
-	// category:string;
-	items: Array<PlanOtherFee> = [];
-	total: number = 0;
-
-	constructor(public category: string) {}
-}
-
 export class PlanOtherFee {
 	// title:string;
 	// category:string;
-	// specification:string;
 	// description?:string;
 	// quantity:number;
 	// price:number = 0;
@@ -208,12 +201,12 @@ export class PlanOtherFee {
 	comments: string = "";
 
 	constructor(
+		public no: number,
 		public category: string,
 		public title: string,
-		public specification: string,
+		public description: string,
 		public quantity: number,
-		public price: number = 0,
-		public description?: string
+		public price: number = 0
 	) {}
 }
 
@@ -277,10 +270,12 @@ export function parseProject(map: any): PlanProject {
 	}
 	var feeCategories = map["feeCategories"];
 	if (feeCategories != null) {
+		let idx = 1;
 		for (var category in feeCategories) {
-			var feeCategory = new PlanFeeCategory(category);
+			var feeCategory = new GroupData<PlanOtherFee>();
 			for (var f of feeCategories[category]) {
 				var fee = new PlanOtherFee(
+					idx++,
 					category,
 					f["title"],
 					f["specification"],
@@ -288,7 +283,7 @@ export function parseProject(map: any): PlanProject {
 					f["price"] ?? 0
 				);
 				fee.comments = f["description"];
-				feeCategory.items.push(fee);
+				feeCategory.addItem(fee, fee.total);
 			}
 			planProject.feeCategories.push(feeCategory);
 		}
@@ -307,13 +302,15 @@ export function calcTotal(planProject: PlanProject): void {
 			var tTotal = 0;
 			task.costTime = task.costTime!.trim();
 			if (task.costTime!.endsWith("d")) {
-				task.costTime = task.costTime!.substring(0, task.costTime!.length - 1);
+				task.costDays = parseFloat(
+					task.costTime!.substring(0, task.costTime!.length - 1)
+				);
 			}
 			tTotal =
 				task.costMan! *
-					parseFloat(task.costTime ?? "0") *
+					task.costDays *
 					planProject.manTypes[task.manType! - 1]?.price ?? 0;
-			task.total = tTotal;
+			task.costTotal = tTotal;
 			sTotal += tTotal;
 		}
 		section.total = sTotal;
@@ -327,15 +324,15 @@ export function calcTotal(planProject: PlanProject): void {
 			if (!feeTotals.has(fee.category)) {
 				feeTotals.set(fee.category, 0);
 			}
-			feeCategory.total += fTotal;
+			feeCategory.sum += fTotal;
 		}
-		pTotal += feeCategory.total;
+		pTotal += feeCategory.sum;
 	}
 	planProject.total = pTotal;
 }
 
-export function genGantt(section: PlanSection, i: number = 1, start=1): PlanSectionTxt {
-	let planSectionTxt = new PlanSectionTxt(
+export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
+	let planSectionData = new PlanSectionData(
 		section.category,
 		section.title,
 		section.description
@@ -356,100 +353,54 @@ export function genGantt(section: PlanSection, i: number = 1, start=1): PlanSect
 			codes,
 			`\t\t${task.title}\t:${taskName(i, task.no)},\t${
 				task.start ?? "after " + taskName(i, task.dep ?? 1)
-			},\t${task.costTime}d`
+			},\t${task.costTime}`
 		);
 	}
 	codes = writeln(codes, `\`\`\``);
-	planSectionTxt.mdGantt = codes;
-	planSectionTxt.summary = `时间：${day(section.start)} - ${day(
+	planSectionData.mdGantt = codes;
+	planSectionData.summary = `时间：${day(section.start)} - ${day(
 		section.end
 	)}\t耗时：${section.days ?? 0}天`;
-	var j = start;
 	for (var task of section.tasks) {
-		if (task?.description ?? "" != "") {
-			let planTaskTxt = new PlanTaskTxt(
-				++j,
-				task.category,
-				task.title,
-				task.description
-			);
-			planTaskTxt.summary = `${task.costMan}*${task.costTime}人天`;
-			planSectionTxt.mdTasks.push(planTaskTxt);
-			planSectionTxt.count++;
+		if (task?.title ?? "" != "") {
+			task.summary = `${task.costMan}*${task.costDays}人天`;
+			planSectionData.addTask(task);
 		}
 	}
-	return planSectionTxt;
+	return planSectionData;
 }
 
-export function genAllPlanSections(
-	planProject: PlanProject
-): Array<PlanSectionTxt> {
-	let allData = new Array<PlanSectionTxt>();
-	if (planProject && planProject.sections && planProject.sections.length > 0) {
-		var start = 0;
-		for (let i = 0; i < planProject.sections.length; i++) {
-			let section: PlanSection = planProject.sections[i];
-			let planSectionTxt = genGantt(section, i, start);
-			start += planSectionTxt.count;
-			allData.push(planSectionTxt);
+export function calcAll(pProject: PlanProject, projectData: ProjectData): void {
+	if (pProject && pProject.sections && pProject.sections.length > 0) {
+		for (let i = 0; i < pProject.sections.length; i++) {
+			let section: PlanSection = pProject.sections[i];
+			let planSectionData = genGantt(section, i);
+			projectData.sections.set(section.title, planSectionData);
+			projectData.totalTasksFee += planSectionData.tasks.sum;
 		}
-
-	}
-	return allData;
-}
-
-export function genAllFee(planProject: PlanProject): PlanProjectFeeTxt {
-	let planProjectFeeTxt = new PlanProjectFeeTxt();
-	for (var section of planProject.sections) {
-		planProjectFeeTxt.totalTasksFee += section.total;
-		var sTasks =
-			planProjectFeeTxt.sections.get(section.title) ??
-			new GroupData<PlanTaskFeeTxt>();
-		var j = 1;
-		for (let task of section.tasks) {
-			let taskfee = new PlanTaskFeeTxt(
-				j++,
-				task.category,
-				task.title,
-				task.description
-			);
-			taskfee.manType = task.manType ?? 0;
-			taskfee.costMan = task.costMan ?? 0;
-			taskfee.costTime = parseFloat(task.costTime ?? "0");
-			taskfee.costTotal = task.total ?? 0;
-			sTasks.addItem(taskfee, taskfee.costTotal);
-		}
-		planProjectFeeTxt.sections.set(section.title, sTasks);
 	}
 
-	for (var man of planProject.manTypes) {
-		planProjectFeeTxt.mans.push(new ManType(man.title, man.price));
-	}
-
-	for (var feeCategory of planProject.feeCategories) {
-		planProjectFeeTxt.totalOtherFee += feeCategory.total;
-		var otherFeeGroup =
-			planProjectFeeTxt.others.get(feeCategory.category) ??
-			new GroupData<PlanOtherFeeTxt>();
-		var j = 1;
+	for (var feeCategory of pProject.feeCategories) {
+		projectData.totalOtherFee += feeCategory.sum;
 		for (var fee of feeCategory.items) {
-			let otherfee = new PlanOtherFeeTxt(
-				j++,
-				fee.category,
-				fee.title,
-				fee.specification
-			);
-			otherfee.quantity = fee.quantity;
-			otherfee.total = fee.total;
-			otherfee.comments = fee.comments;
-			otherFeeGroup.addItem(otherfee, otherfee.total);
+			var categoryName = fee.category;
+			var otherFeeGroup =
+				projectData.others.get(categoryName) ?? new GroupData<PlanOtherFee>();
+			otherFeeGroup.addItem(fee, fee.total);
+			projectData.others.set(categoryName, otherFeeGroup);
 		}
-		planProjectFeeTxt.others.set(feeCategory.category, otherFeeGroup);
 	}
 
-	planProjectFeeTxt.total =
-		planProjectFeeTxt.totalTasksFee + planProjectFeeTxt.totalOtherFee;
-	return planProjectFeeTxt;
+	projectData.total = projectData.totalTasksFee + projectData.totalOtherFee;
+}
+
+export function calcProjectData(map: any): ProjectData {
+	let pProject: PlanProject = parseProject(map);
+	calcTotal(pProject);
+	let projectData = new ProjectData();
+	projectData.up(pProject);
+	calcAll(pProject, projectData);
+	return projectData;
 }
 
 function getDateTime(value: any): Date {

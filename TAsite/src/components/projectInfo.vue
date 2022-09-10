@@ -25,18 +25,18 @@
 						</n-statistic>
 					</div>
 				</div>
-				<n-tabs type="line" animated default-value="budgets">
+				<n-tabs type="line" animated default-value="info">
 					<n-tab-pane name="info" :tab="t('project.info')">
-						<v-md-preview :text="pInfoData" />
+						<v-md-preview :text="pInfoMdText" />
 					</n-tab-pane>
 					<n-tab-pane name="plans" :tab="t('project.plans')">
-						<n-collapse v-if="projectSections.length>0" arrow-placement="right" :default-expanded-names="[0]">
-							<n-collapse-item v-for="(section, idx) in projectSections" :key="idx" :title="section.title" :name="idx">
+						<n-collapse v-if="projectData.sections.size>0" arrow-placement="right" :default-expanded-names="[0]">
+							<n-collapse-item v-for="([sname, section], idx) in projectData.sections" :key="sname" :title="section.title" :name="idx">
 								<template #header><span class="font-bold text-lg">[{{t('project.milestone')+(idx+1)}}]{{section.title}}</span></template>
 								<template #header-extra>{{section.summary}}</template>
 								<v-md-preview :text="section.mdGantt" />
 								{{section.description}}
-								<div class="table border-collapse empty-cells-visible">
+								<div class="table w-full border-collapse empty-cells-visible">
 									<div class="table-header-group bg-blue-200">
 										<div class="table-row">
 											<div class="wtablecell font-medium">{{t('tasktable.no')}}</div>
@@ -48,7 +48,7 @@
 										</div>
 									</div>
 									<div class="table-row-group">
-										<div class="table-row" v-for="(task, idx) in section.mdTasks" :key="idx">
+										<div class="table-row" v-for="(task, idx) in section.tasks.items" :key="idx">
 											<div class="wtablecell">{{task.no}}</div>
 											<div class="wtablecell">{{task.category}}</div>
 											<div class="wtablecell">{{task.title}}
@@ -86,21 +86,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<template v-for="(data,idx) in planProjectFeeTxt.sections">
+								<template v-for="(sdata,idx) in projectData.sections">
 									<tr>
-										<td class="font-bold" colspan="6" align="center">[{{t('project.milestone')+(idx+1)}}]{{data[0]}}</td>
+										<td class="font-bold" colspan="6" align="center">[{{t('project.milestone')+(idx+1)}}]{{sdata[0]}}</td>
 										<td class="font-bold" align="right">
-											<span class="font-bold mx-1">{{f.fixMoney(data[1].sum, 2, true)}}</span>{{planProject.unit}}
+											<span class="font-bold mx-1">{{f.fixMoney(sdata[1].tasks.sum, 2, true)}}</span>{{planProject.unit}}
 										</td>
 									</tr>
-									<tr v-for="(task, idx) in data[1].items" :key="idx">
+									<tr v-for="(task, idx) in sdata[1].tasks.items" :key="idx">
 										<td class="wtablecell">{{task.no}}</td>
 										<td class="wtablecell" align="right">{{task.category}}</td>
 										<td class="wtablecell">{{task.title}}</td>
 										<td class="wtablecell font-medium">{{manTitle(task)}}</td>
 										<td class="wtablecell font-medium">{{task.costMan}}</td>
-										<td class="wtablecell font-medium">{{task.costTime}}</td>
-										<td class="wtablecell font-medium">{{f.fixMoney(task.costTotal, 2, true)}}</td>
+										<td class="wtablecell font-medium">{{task.costDays}}</td>
+										<td class="wtablecell font-medium" align="right">{{f.fixMoney(task.costTotal, 2, true)}}</td>
 									</tr>
 								</template>
 							</tbody>
@@ -108,7 +108,7 @@
 						<ul>
 							<li>人员平均成本:
 								<ul>
-									<li v-for="(man,idx) in planProjectFeeTxt.mans" :key="idx">{{man.title}}: <span class="font-bold mx-1">{{f.fixMoney(man.price*30, 1)}}</span>{{planProject.unit}}/月</li>
+									<li v-for="(man,idx) in projectData.mans" :key="idx">{{man.title}}: <span class="font-bold mx-1">{{f.fixMoney(man.price*30, 1)}}</span>{{planProject.unit}}/月</li>
 								</ul>
 							</li>
 							<li>平台开发费用粗略按照人工耗时*人员工时工资进行计算,没有包含人员占用空闲时间成本及额外加班成本,所以整体时间预估相对宽松</li>
@@ -127,7 +127,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<template v-for="(data) in planProjectFeeTxt.others">
+								<template v-for="(data) in projectData.others">
 									<tr>
 										<td class="font-bold" colspan="5" align="center">{{data[0]}}</td>
 										<td class="font-bold" align="right">
@@ -139,7 +139,7 @@
 										<td class="wtablecell">{{task.title}}</td>
 										<td class="wtablecell">{{task.description}}</td>
 										<td class="wtablecell font-medium">{{task.quantity}}</td>
-										<td class="wtablecell font-medium">{{f.fixMoney(task.total, 2, true)}}</td>
+										<td class="wtablecell font-medium" align="right">{{f.fixMoney(task.total, 2, true)}}</td>
 										<td class="wtablecell">{{task.comments}}</td>
 									</tr>
 								</template>
@@ -157,32 +157,26 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="(sdata, sidx) in planProjectFeeTxt.sections">
-									<td class="font-bold" :rowspan="planProjectFeeTxt.sections.size" v-if="sidx==0">平台开发</td>
+								<tr v-for="(sdata, sidx) in projectData.sections" :key="sdata[0]">
+									<td class="font-bold" :rowspan="projectData.sections.size" v-if="sidx==0">平台开发</td>
 									<td class="wtablecell">[{{t('project.milestone')+(sidx+1)}}]{{sdata[0]}}</td>
-									<td class="wtablecell font-medium">{{f.fixMoney(sdata[1].sum, 2, true)}}</td>
+									<td class="wtablecell font-medium" align="right">{{f.fixMoney(sdata[1].tasks.sum, 2, true)}}</td>
 								</tr>
-								<tr v-for="(odata, oidx) in planProjectFeeTxt.others">
-									<td class="font-bold" :rowspan="planProjectFeeTxt.others.size" v-if="oidx==0">实施运维</td>
+								<tr v-for="(odata, oidx) in projectData.others">
+									<td class="font-bold" :rowspan="projectData.others.size" v-if="oidx==0">实施运维</td>
 									<td class="wtablecell">{{odata[0]}}</td>
-									<td class="wtablecell font-medium">{{f.fixMoney(odata[1].sum, 2, true)}}</td>
+									<td class="wtablecell font-medium" align="right">{{f.fixMoney(odata[1].sum, 2, true)}}</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td colspan="2" class="font-bold" align="right">{{t('project.sum')}}</td>
 									<td>
-										<span class="font-bold mx-1">{{f.fixMoney(planProjectFeeTxt.total, 2, true)}}</span>{{planProject.unit}}
+										<span class="font-bold mx-1">{{f.fixMoney(projectData.total, 2, true)}}</span>{{planProject.unit}}
 									</td>
 								</tr>
 							</tfoot>
 						</table>
-					</n-tab-pane>
-					<n-tab-pane name="mans" :tab="t('project.mans')">
-						<div class="">
-
-
-						</div>
 					</n-tab-pane>
 				</n-tabs>
 			</div>
@@ -192,7 +186,7 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import { calcTotal, genAllFee, genAllPlanSections, parseProject, PlanProject, PlanProjectFeeTxt, PlanSectionTxt } from '@/utils/plandoc';
+import { calcProjectData, PlanProject, ProjectData } from '@/utils/plandoc';
 import * as f from '@/utils/formarts';
 const { t } = useI18n();
 
@@ -207,38 +201,23 @@ const projectInfo = ref<any>({
 	description: ''
 });
 const planProject = ref<PlanProject>(new PlanProject(''));
-const projectSections = ref<PlanSectionTxt[]>([]);
-const planProjectFeeTxt = ref<PlanProjectFeeTxt>(new PlanProjectFeeTxt());
-const pInfoData = ref<string>(``);
-const projectData = ref<any>({
-	workingTasks: 10,
-	finishedTasks: 20,
-	pendingTasks: 200,
-	used: '3,000',
-	needed: '123,000',
-	symbol1: 'USDT',
-	vault: '200',
-	symbol2: 'BNB',
-
-});
+const pInfoMdText = ref<string>(``);
+const projectData = ref<ProjectData>(new ProjectData());
 
 onMounted(async () => {
 	const pInfoMd = await axios.get('/projects/project' + id + '.md');
-	pInfoData.value = pInfoMd.data.toString();
+	pInfoMdText.value = pInfoMd.data.toString();
 	const pInfo = await axios.get('/projects/project' + id + '.json');
 	projectInfo.value = pInfo.data;
-	let pProject: PlanProject = parseProject(pInfo.data);
-	calcTotal(pProject);
-	planProject.value = pProject;
-	projectSections.value = genAllPlanSections(pProject);
-	planProjectFeeTxt.value = genAllFee(pProject);
-	// const pData = await axios.get('/projects/project' + id + 'Data.json');
-	// projectData.value = pData.data;
-	console.log(planProjectFeeTxt.value);
+	let pData = calcProjectData(pInfo.data);
+	projectData.value = pData;
+	planProject.value = pData.planProject;
+
+	// console.log(projectData.value);
 });
 
 const manTitle = function (task: any) {
-	let manInfo = planProjectFeeTxt.value.mans[task.manType - 1];
+	let manInfo = projectData.value.mans[task.manType - 1];
 	return manInfo?.title ?? task.manType;
 }
 </script>
