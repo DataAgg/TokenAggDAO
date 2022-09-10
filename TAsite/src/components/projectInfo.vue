@@ -25,7 +25,7 @@
 						</n-statistic>
 					</div>
 				</div>
-				<n-tabs type="line" animated default-value="info">
+				<n-tabs type="line" animated default-value="budgets">
 					<n-tab-pane name="info" :tab="t('project.info')">
 						<v-md-preview :text="pInfoMdText" />
 					</n-tab-pane>
@@ -218,6 +218,6 @@ onMounted(async () => {
 
 const manTitle = function (task: any) {
 	let manInfo = projectData.value.mans[task.manType - 1];
-	return manInfo?.title ?? task.manType;
+	return t('manType.'+manInfo?.title ?? task.manType);
 }
 </script>

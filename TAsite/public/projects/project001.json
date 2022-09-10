@@ -3,11 +3,16 @@
 	"description": "+ 此计划只是按照目前已了解的功能需求进行评估计划的，如果实施过程中增加大型功能模块开发或改造，整体时间进度需要及时调整\n+ **平台开发第1阶段**基本都是基于多年经验与现有项目成果进行重构，思路相对清晰，目标明确，所以第一阶段的研发内容较为详细；起始开发部分不需要外部协助，先搭建基础框架后再正式对外合伙人招募，启动后续开发工作；\n+ **平台开发第2阶段**很多内容都属于初步设计阶段，所以其工作计划相对粗糙，后期将根据实际的市场与社区反馈进行调整、详细设计规划。\n",
 	"unit": "USDT",
 	"manTypes": {
-		"本地开发": 80,
-		"测试人员": 60,
-		"实施运维": 100,
-		"项目管理": 150,
-		"运营策划": 80
+		"teamLeader": 150,
+		"designer": 50,
+		"webDeveloper": 80,
+		"serverDeveloper": 70,
+		"contractDeveloper": 90,
+		"tester": 60,
+		"maintenanceEngineer": 100,
+		"writer": 30,
+		"trainer": 30,
+		"marketer": 80
 	},
 	"sections": [
 		{
@@ -18,27 +23,27 @@
 			"description": "TokenAgg DAO平台的MVP核心功能开发，包含智能合约、网站DApp及管理后台开发\n",
 			"tasks": [
 				{
-					"task": "需求分析讨论, 2022-08-18, 3d, 4,3",
+					"task": "需求分析讨论, 2022-08-18, 3d, 1,3",
 					"category": "详细设计",
 					"description": "组织核心团队进行头脑风暴，收集整理核心业务需求\n"
 				},
 				{
-					"task": "v1功能模块详细设计, after 1, 5d, 4,2",
+					"task": "v1功能模块详细设计, after 1, 5d, 1,2",
 					"category": "详细设计",
 					"description": "根据需求分析结果,设计平台v1版本的功能模块, 业务流程及业务对象关系\n"
 				},
 				{
-					"task": "TAsite基础框开发架搭建, after 2, 5d, 1,3",
+					"task": "TAsite基础框开发架搭建, after 2, 5d, 3,3",
 					"category": "TAsite",
 					"description": "使用vite+vuejs+ethersjs+naive-ui+windicss实现网站的基础开发框架，包含CMS和DaReport\n"
 				},
 				{
-					"task": "集成整合钱包交互基本功能, after 3, 5d, 1,3",
+					"task": "集成整合钱包交互基本功能, after 3, 5d, 5,3",
 					"category": "TAsite",
 					"description": "实现基本的钱包交互功能，包含连接钱包、代币管理、投票等基本钱包交互\n"
 				},
 				{
-					"task": "实现web3.storage集成, after 4, 5d, 1,3",
+					"task": "实现web3.storage集成, after 4, 5d, 5,3",
 					"category": "TAsite",
 					"description": "实现web3.storage交互功能，包含上传图片/数据文件、显示图片/json数据等\n"
 				},

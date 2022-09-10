@@ -25,6 +25,17 @@ project:
   tasks: 任务统计（正在做/已完成/未完成）
   sum: '合计'
   milestone: 里程碑
+manType:
+    teamLeader: 项目经理
+    designer: 设计师
+    webDeveloper: web开发工程师
+    serverDeveloper: server开发工程师
+    contractDeveloper: 智能合约开发工程师
+    tester: 测试工程师
+    maintenanceEngineer: 运维工程师
+    writer: 撰稿人
+    trainer: 培训老师
+    marketer: 市场运营
 tasktable:
   no: ID
   category: 分类
