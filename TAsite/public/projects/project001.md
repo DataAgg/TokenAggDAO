@@ -260,5 +260,3 @@ flowchart LR
           style governProject fill:#FFF4DD,stroke:#EEDDBB,stroke-width:2px
 ```
 
-![组件交互](/imgs/20220829110923.png)
-

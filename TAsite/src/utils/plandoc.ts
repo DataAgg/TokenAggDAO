@@ -262,7 +262,6 @@ export function parseProject(map: any): PlanProject {
 			}
 			var tasks = s["tasks"];
 			if (tasks != null) {
-				var no = 1;
 				for (let t of tasks) {
 					var id = t["id"];
 					var items = t["task"].split(",");
@@ -468,6 +467,8 @@ function day(t?: Date): string {
 function taskName(id: string, task: PlanTask): string {
 	if (id == task.id && task.status == "working") {
 		return "crit, active, " + id.trim();
+	} else if (id == task.id && task.status == "pending") {
+		return "active, " + id.trim();
 	} else if (id == task.id && task.status == "finished") {
 		return "done, " + id.trim();
 	} else {

@@ -24,7 +24,7 @@ const { t } = useI18n();
 								</a>
 							</div>
 							<div>
-								<a class="wbtn1 bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800 ml-4" href="/#/tokenaggdao">{{ t('home.LearnMore') }}
+								<a class="wbtn1 bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800 ml-4" href="/#/project/view/001">{{ t('home.LearnMore') }}
 								</a>
 							</div>
 						</div>

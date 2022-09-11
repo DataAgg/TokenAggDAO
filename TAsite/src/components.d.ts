@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     Pagination: typeof import('./components/widgets/Pagination.vue')['default']
     Picture: typeof import('./components/core/Picture.vue')['default']
     ProjectInfo: typeof import('./components/projectInfo.vue')['default']
+    ProjectView: typeof import('./components/projectView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Stats: typeof import('./components/widgets/Stats.vue')['default']

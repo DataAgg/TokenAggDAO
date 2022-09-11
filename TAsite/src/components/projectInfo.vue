@@ -1,7 +1,7 @@
 <template>
 	<Header />
 	<main>
-		<section class="max-w-6xl mx-auto px-4 <sm:px-1">
+		<section class="max-w-6xl mx-auto px-4 pb-6 <sm:px-1">
 			<div class="md-body md:py-6 sm:py-1">
 				<div class="text-3xl">{{projectInfo.title}}</div>
 				<div class="grid md:(grid-cols-3 p-2) sd:(grid-cols-1)">
@@ -34,8 +34,8 @@
 							<n-collapse-item v-for="([sname, section], idx) in projectData.sections" :key="sname" :title="section.title" :name="idx">
 								<template #header><span class="font-bold text-lg">[{{t('project.milestone')+(idx+1)}}]{{section.title}}</span></template>
 								<template #header-extra>{{section.summary}}</template>
-								<v-md-preview :text="section.mdGantt" />
 								{{section.description}}
+								<v-md-preview :text="section.mdGantt" />
 								<div class="table w-full border-collapse empty-cells-visible">
 									<div class="table-header-group font-bold">
 										<div class="table-row">
