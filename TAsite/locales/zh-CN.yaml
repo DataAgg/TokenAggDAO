@@ -19,18 +19,20 @@ project:
   mans: 参与者
   feeStates: 项目经费
   vault: 项目金库
+  draftTasks: 未确定
   workingTasks: 正在做
+  pendingTasks: 待完成
   finishedTasks: 已完成
-  pendingTasks: 未完成
   tasks: 任务统计（正在做/已完成/未完成）
   sum: '合计'
   milestone: 里程碑
+  day: 天
 manType:
     teamLeader: 项目经理
     designer: 设计师
-    webDeveloper: web开发工程师
-    serverDeveloper: server开发工程师
-    contractDeveloper: 智能合约开发工程师
+    webDeveloper: web工程师
+    serverDeveloper: server工程师
+    contractDeveloper: 智能合约工程师
     tester: 测试工程师
     maintenanceEngineer: 运维工程师
     writer: 撰稿人
@@ -44,7 +46,8 @@ tasktable:
   status: 状态
   status_finished: 已完成
   status_working: 进行中
-  status_pending: 未开始
+  status_pending: 待完成
+  status_draft: 未确定
   actions: 操作
 feetable:
   no: ID
@@ -52,7 +55,7 @@ feetable:
   title: 名称/描述
   manType: 人员类型
   costMan: 人员
-  costTime: 工作量(人天)
+  costTime: 天数
   costTotal: 价格
 feetable2:
   no: ID

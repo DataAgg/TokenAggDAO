@@ -60,16 +60,25 @@ export class ManType {
 }
 
 export class PlanProject {
-	manTypes: Array<ManType> = [];
-	sections: Array<PlanSection> = [];
-	feeCategories: Array<GroupData<PlanOtherFee>> = [];
-	total: number = 0;
+	public manTypes: Array<ManType> = [];
+	public sections: Array<PlanSection> = [];
+	public feeCategories: Array<GroupData<PlanOtherFee>> = [];
+	public total: number = 0;
 
 	constructor(
 		public title: string,
 		public description: string = "",
 		public unit: string = "USDT"
 	) {}
+
+	public getManPrice(manType: string): number {
+		for (var mt of this.manTypes) {
+			if (mt.title == manType) {
+				return mt.price;
+			}
+		}
+		return 0;
+	}
 }
 
 export class PlanSection {
@@ -79,8 +88,8 @@ export class PlanSection {
 	// end?:Date;
 	// days?:number;
 	// description:string;
-	tasks: Array<PlanTask> = [];
-	total: number = 0;
+	public tasks: Array<PlanTask> = [];
+	public total: number = 0;
 
 	constructor(
 		public category: string,
@@ -97,22 +106,25 @@ export class ProjectData {
 	public title: string;
 	public description: string = "";
 
-	workingTasks: number = 10;
-	finishedTasks: number = 20;
-	pendingTasks: number = 200;
-	used: string = "3,000";
-	needed: string = "123,000";
-	symbol1: string = "USDT";
-	vault: string = "200";
-	symbol2: string = "BNB";
+	public draftTasks: number = 0;
+	public workingTasks: number = 0;
+	public finishedTasks: number = 0;
+	public pendingTasks: number = 0;
+	public allTasks: number = 0;
+	public usedCost: number = 0;
+	public neededCost: number = 0;
+	public symbol1: string = "USDT";
+	public vault: number = 500;
+	public symbol2: string = "BNB";
 
-	sections = new Map<string, PlanSectionData>();
-	others = new Map<string, GroupData<PlanOtherFee>>();
-	mans = new Array<ManType>();
-	totalTasksFee: number = 0;
-	totalOtherFee: number = 0;
-	total: number = 0;
-	count: number = 0;
+	public sections = new Map<string, PlanSectionData>();
+	public others = new Map<string, GroupData<PlanOtherFee>>();
+	public mans = new Array<ManType>();
+	public totalTasksFee: number = 0;
+	public totalOtherFee: number = 0;
+	public total: number = 0;
+	public count: number = 0;
+
 	constructor() {
 		this.title = "";
 		this.planProject = new PlanProject("");
@@ -127,7 +139,14 @@ export class ProjectData {
 }
 
 export class PlanSectionData {
-	tasks = new GroupData<PlanTask>();
+	public draftTasks: number = 0;
+	public workingTasks: number = 0;
+	public finishedTasks: number = 0;
+	public pendingTasks: number = 0;
+	public usedCost: number = 0;
+	public neededCost: number = 0;
+	public tasks = new GroupData<PlanTask>();
+
 	constructor(
 		public category: string,
 		public title: string,
@@ -172,10 +191,13 @@ export class PlanTask {
 	// costTime?:string;
 	// costMan?:number;
 	// manType?:number;
-	public costDays: number = 0;
 	public costTotal: number = 0;
 	public summary: string = "";
-	public status: number = 0;
+	public status: string = "draftTasks";
+	public costDays: number = 0;
+	public costs = new Map<string, number[]>();
+	public sumMans: number = 0;
+	public sumDays: number = 0;
 
 	constructor(
 		public no: number,
@@ -185,9 +207,7 @@ export class PlanTask {
 		public comment = "",
 		public start?: string,
 		public dep?: number,
-		public costTime?: string,
-		public costMan?: number,
-		public manType?: number
+		public costTime?: string
 	) {}
 }
 
@@ -197,8 +217,9 @@ export class PlanOtherFee {
 	// description?:string;
 	// quantity:number;
 	// price:number = 0;
-	total: number = 0;
-	comments: string = "";
+	public total: number = 0;
+	public comments: string = "";
+	public status: string = "draft";
 
 	constructor(
 		public no: number,
@@ -249,19 +270,21 @@ export function parseProject(map: any): PlanProject {
 					if (index > 0) {
 						task.title = task.title.substring(0, index).trim();
 					}
-					if (items.length >= 5) {
+					if (items.length >= 3) {
 						if (items[1].trim().startsWith("after")) {
 							task.dep = parseInt(items[1].trim().substring(5).trim());
 						} else {
 							task.start = items[1].trim();
 						}
 						task.costTime = items[2].trim();
-						task.manType = parseInt(items[3].trim());
-						task.costMan = parseFloat(items[4].trim());
 					}
 					task.category = t["category"] ?? "";
 					task.description = t["description"] ?? "";
-
+					task.status = t["status"] ?? "draft";
+					var costs = t["costs"] ?? {};
+					Object.entries(costs).forEach(([k, v]) => {
+						task.costs.set(k, v as number[]);
+					});
 					section.tasks.push(task);
 				}
 			}
@@ -283,6 +306,7 @@ export function parseProject(map: any): PlanProject {
 					f["price"] ?? 0
 				);
 				fee.comments = f["description"];
+				fee.status = f["status"]??'draft';
 				feeCategory.addItem(fee, fee.total);
 			}
 			planProject.feeCategories.push(feeCategory);
@@ -306,10 +330,13 @@ export function calcTotal(planProject: PlanProject): void {
 					task.costTime!.substring(0, task.costTime!.length - 1)
 				);
 			}
-			tTotal =
-				task.costMan! *
-					task.costDays *
-					planProject.manTypes[task.manType! - 1]?.price ?? 0;
+			for (var man of task.costs.keys()) {
+				var manDays = task.costs.get(man) ?? [0, 0];
+				var manPrice = planProject.getManPrice(man);
+				tTotal += manDays[0] * manDays[1] * manPrice;
+				task.sumMans += manDays[0];
+				task.sumDays += manDays[1];
+			}
 			task.costTotal = tTotal;
 			sTotal += tTotal;
 		}
@@ -355,6 +382,17 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
 				task.start ?? "after " + taskName(i, task.dep ?? 1)
 			},\t${task.costTime}`
 		);
+		if (task.status == "working") {
+			planSectionData.workingTasks++;
+		} else if (task.status == "finished") {
+			planSectionData.finishedTasks++;
+			planSectionData.usedCost += task.costTotal;
+		} else if (task.status == "pending") {
+			planSectionData.pendingTasks++;
+		} else {
+			planSectionData.draftTasks++;
+		}
+		planSectionData.neededCost += task.costTotal;
 	}
 	codes = writeln(codes, `\`\`\``);
 	planSectionData.mdGantt = codes;
@@ -363,7 +401,7 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
 	)}\t耗时：${section.days ?? 0}天`;
 	for (var task of section.tasks) {
 		if (task?.title ?? "" != "") {
-			task.summary = `${task.costMan}*${task.costDays}人天`;
+			task.summary = `${task.sumMans}*${task.sumDays}人天`;
 			planSectionData.addTask(task);
 		}
 	}
@@ -377,6 +415,15 @@ export function calcAll(pProject: PlanProject, projectData: ProjectData): void {
 			let planSectionData = genGantt(section, i);
 			projectData.sections.set(section.title, planSectionData);
 			projectData.totalTasksFee += planSectionData.tasks.sum;
+			//
+			projectData.allTasks += planSectionData.tasks.count;
+			projectData.draftTasks += planSectionData.draftTasks;
+			projectData.workingTasks += planSectionData.workingTasks;
+			projectData.pendingTasks += planSectionData.pendingTasks;
+			projectData.finishedTasks += planSectionData.finishedTasks;
+
+			projectData.usedCost += planSectionData.usedCost;
+			projectData.neededCost += planSectionData.neededCost;
 		}
 	}
 
@@ -388,10 +435,14 @@ export function calcAll(pProject: PlanProject, projectData: ProjectData): void {
 				projectData.others.get(categoryName) ?? new GroupData<PlanOtherFee>();
 			otherFeeGroup.addItem(fee, fee.total);
 			projectData.others.set(categoryName, otherFeeGroup);
+
+			if (fee.status == "finished") {
+				projectData.usedCost += fee.total;
+			}
 		}
 	}
-
 	projectData.total = projectData.totalTasksFee + projectData.totalOtherFee;
+	projectData.neededCost += projectData.totalOtherFee;
 }
 
 export function calcProjectData(map: any): ProjectData {

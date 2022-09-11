@@ -7,25 +7,25 @@
 				<div class="grid md:(grid-cols-3 p-2) sd:(grid-cols-1)">
 					<div class="flex flex-col justify-center">
 						<n-statistic :label="t('project.tasks')" :value="projectData.workingTasks">
-							<template #suffix>/{{projectData.finishedTasks}}/{{projectData.pendingTasks}}</template>
+							<template #suffix>/{{projectData.finishedTasks}}/{{projectData.allTasks}}</template>
 						</n-statistic>
 					</div>
 					<div class="flex flex-col justify-center">
-						<n-statistic :label="t('project.feeStates')" :value="projectData.used">
+						<n-statistic :label="t('project.feeStates')" :value="f.fixMoney(projectData.usedCost, 1, true)">
 							<template #prefix>
 							</template>
 							<template #suffix>
-								/ {{projectData.needed}} {{projectData.symbol1}}
+								/ {{f.fixMoney(projectData.neededCost, 1, true)}} {{projectData.symbol1}}
 							</template>
 						</n-statistic>
 					</div>
 					<div class="flex flex-col justify-center">
 						<n-statistic :label="t('project.vault')">
-							{{projectData.vault}} {{projectData.symbol2}}
+							{{f.fixMoney(projectData.vault, 2, true)}} {{projectData.symbol2}}
 						</n-statistic>
 					</div>
 				</div>
-				<n-tabs type="line" animated default-value="budgets">
+				<n-tabs type="line" animated default-value="plans">
 					<n-tab-pane name="info" :tab="t('project.info')">
 						<v-md-preview :text="pInfoMdText" />
 					</n-tab-pane>
@@ -56,9 +56,9 @@
 											</div>
 											<div class="wtablecell font-medium">{{task.summary}}</div>
 											<div class="wtablecell font-medium">
-												<n-tag type="warning" size="small" round v-if="task.status == 0">{{t('tasktable.status_pending')}}</n-tag>
-												<n-tag type="info" size="small" round v-if="task.status == 1">{{t('tasktable.status_working')}}</n-tag>
-												<n-tag type="success" size="small" round v-if="task.status == 10">{{t('tasktable.status_finished')}}</n-tag>
+												<n-tag type="warning" size="small" round v-if="task.status == 'pending'">{{t('tasktable.status_pending')}}</n-tag>
+												<n-tag type="info" size="small" round v-if="task.status == 'working'">{{t('tasktable.status_working')}}</n-tag>
+												<n-tag type="success" size="small" round v-if="task.status == 'finished'">{{t('tasktable.status_finished')}}</n-tag>
 											</div>
 											<div class="wtablecell font-medium">
 												<n-dropdown trigger="hover" :options="ActionOptions" :show-arrow="true">
@@ -79,7 +79,6 @@
 									<td class="font-bold">{{t('feetable.no')}}</td>
 									<td class="font-bold">{{t('feetable.category')}}</td>
 									<td class="font-bold">{{t('feetable.title')}}</td>
-									<td class="font-bold">{{t('feetable.manType')}}</td>
 									<td class="font-bold">{{t('feetable.costMan')}}</td>
 									<td class="font-bold">{{t('feetable.costTime')}}</td>
 									<td class="font-bold">{{t('feetable.costTotal')}}({{planProject.unit}})</td>
@@ -88,7 +87,7 @@
 							<tbody>
 								<template v-for="(sdata,idx) in projectData.sections">
 									<tr>
-										<td class="font-bold" colspan="6" align="center">[{{t('project.milestone')+(idx+1)}}]{{sdata[0]}}</td>
+										<td class="font-bold" colspan="5" align="center">[{{t('project.milestone')+(idx+1)}}]{{sdata[0]}}</td>
 										<td class="font-bold" align="right">
 											<span class="font-bold mx-1">{{f.fixMoney(sdata[1].tasks.sum, 2, true)}}</span>{{planProject.unit}}
 										</td>
@@ -97,8 +96,11 @@
 										<td class="wtablecell">{{task.no}}</td>
 										<td class="wtablecell" align="right">{{task.category}}</td>
 										<td class="wtablecell">{{task.title}}</td>
-										<td class="wtablecell font-medium">{{manTitle(task)}}</td>
-										<td class="wtablecell font-medium">{{task.costMan}}</td>
+										<td class="wtablecell font-medium">
+											<n-tag size="small" round v-for="([mantype, [man,days]], idx) in task.costs" :key="idx" class="ml-1" :color="manColor(mantype)">
+												{{manText(mantype, man, days)}}
+											</n-tag>
+										</td>
 										<td class="wtablecell font-medium">{{task.costDays}}</td>
 										<td class="wtablecell font-medium" align="right">{{f.fixMoney(task.costTotal, 2, true)}}</td>
 									</tr>
@@ -108,7 +110,7 @@
 						<ul>
 							<li>人员平均成本:
 								<ul>
-									<li v-for="(man,idx) in projectData.mans" :key="idx">{{man.title}}: <span class="font-bold mx-1">{{f.fixMoney(man.price*30, 1)}}</span>{{planProject.unit}}/月</li>
+									<li v-for="(man,idx) in projectData.mans" :key="idx">{{t('manType.'+man.title)}}: <span class="font-bold mx-1">{{f.fixMoney(man.price*30, 1)}}</span>{{planProject.unit}}/月</li>
 								</ul>
 							</li>
 							<li>平台开发费用粗略按照人工耗时*人员工时工资进行计算,没有包含人员占用空闲时间成本及额外加班成本,所以整体时间预估相对宽松</li>
@@ -204,6 +206,20 @@ const planProject = ref<PlanProject>(new PlanProject(''));
 const pInfoMdText = ref<string>(``);
 const projectData = ref<ProjectData>(new ProjectData());
 
+const manText = function (mantype: string, man: number, days: number): string {
+	return `${man}${t('manType.' + mantype)}*${days}${t('project.day')}`;
+}
+
+const ManColors = new Map<string, string>();
+const AllColors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6',  '#f1c40f', '#e67e22', '#e74c3c', '#16a085', '#27ae60', '#2980b9', '#8e44ad',  '#f39c12', '#d35400', '#c0392b', ];
+
+const manColor = function (mantype: string): any {
+	if (!ManColors.has(mantype) && AllColors.length > ManColors.size) {
+		ManColors.set(mantype, AllColors[ManColors.size]);
+	}
+	return { color: (ManColors.get(mantype) ?? '' )+'88'};
+}
+
 onMounted(async () => {
 	const pInfoMd = await axios.get('/projects/project' + id + '.md');
 	pInfoMdText.value = pInfoMd.data.toString();
@@ -213,11 +229,8 @@ onMounted(async () => {
 	projectData.value = pData;
 	planProject.value = pData.planProject;
 
-	// console.log(projectData.value);
+	console.log(projectData.value);
 });
 
-const manTitle = function (task: any) {
-	let manInfo = projectData.value.mans[task.manType - 1];
-	return t('manType.'+manInfo?.title ?? task.manType);
-}
+
 </script>
