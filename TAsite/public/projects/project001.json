@@ -23,6 +23,7 @@
 			"description": "TokenAgg DAO平台的MVP核心功能开发，包含智能合约、网站DApp及管理后台开发",
 			"tasks": [
 				{
+					"id":"t01001",
 					"task": "需求分析讨论, 2022-08-18, 3d",
 					"costs": { "teamLeader": [1, 3], "marketer": [1, 3] },
 					"status": "finished",
@@ -30,178 +31,205 @@
 					"description": "组织核心团队进行头脑风暴，收集整理核心业务需求\n"
 				},
 				{
-					"task": "v1功能模块详细设计, after 1, 5d",
+					"id":"t01002",
+					"task": "v1功能模块详细设计, after t01001, 5d",
 					"costs": { "teamLeader": [1, 5], "designer": [1, 3] },
 					"status": "finished",
 					"category": "详细设计",
 					"description": "根据需求分析结果,设计平台v1版本的功能模块, 业务流程及业务对象关系\n"
 				},
 				{
-					"task": "TAsite基础框开发架搭建, after 2, 5d",
+					"id":"t02001",
+					"task": "TAsite基础框开发架搭建, after t01002, 5d",
 					"costs": { "webDeveloper": [1, 3] },
 					"status": "finished",
 					"category": "TAsite",
 					"description": "使用vite+vuejs+ethersjs+naive-ui+windicss实现网站的基础开发框架，包含CMS和DaReport\n"
 				},
 				{
-					"task": "ProjectFactory项目静态原型, after 3, 10d",
+					"id":"t02002",
+					"task": "ProjectFactory项目静态原型, after t02001, 10d",
 					"costs": { "webDeveloper": [1, 10] },
 					"status": "finished",
 					"category": "TAsite",
 					"description": "实现ProjectFactory展示TADAO项目的原型界面，包含项目详情管理页面及项目完整信息展示页面"
 				},
 				{
-					"task": "集成整合钱包交互基本功能, after 4, 5d",
+					"id":"t02003",
+					"task": "集成整合钱包交互基本功能, after t02002, 5d",
 					"costs": { "webDeveloper": [1, 5], "contractDeveloper": [1, 3] },
 					"status": "pending",
 					"category": "TAsite",
 					"description": "实现基本的钱包交互功能，包含连接钱包、代币管理、投票等基本钱包交互\n"
 				},
 				{
-					"task": "实现web3.storage集成, after 5, 5d",
+					"id":"t02004",
+					"task": "实现web3.storage集成, after t02008, 5d",
 					"costs": { "webDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "实现web3.storage交互功能，包含上传图片/数据文件、显示图片/json数据等\n"
 				},
 				{
-					"task": "TAadmin V0.1基础功能实现, after 4, 3d",
+					"id":"t02005",
+					"task": "TAadmin V0.1基础功能实现, after t02002, 3d",
 					"costs": { "webDeveloper": [1, 3], "contractDeveloper": [1, 3] },
 					"category": "TAsite",
 					"description": "在TAsite中实现一个基础的管理控制台界面，提供一些基本的合约交互操作与数据展示\n"
 				},
 				{
-					"task": "ProjectFactory项目管理基础功能, after 5, 3d",
-					"costs": { "webDeveloper": [1, 3] },
+					"id":"t02006",
+					"task": "ProjectFactory项目管理基础功能, after t05003, 5d",
+					"costs": { "webDeveloper": [2, 5] },
 					"status": "pending",
 					"category": "TAsite",
 					"description": "实现ProjectFactory的项目方案编辑、发布项目、提交项目进度验收等项目管理部分基础功能\n"
 				},
 				{
-					"task": "ProjectFactory数据展示与客户交互, after 7, 3d",
-					"costs": { "webDeveloper": [1, 3] },
+					"id":"t02007",
+					"task": "ProjectFactory数据展示与客户交互, after t02006, 5d",
+					"costs": { "webDeveloper": [2, 5] },
 					"category": "TAsite",
 					"description": "实现ProjectFactory的所有项目浏览查询、项目提案投票等项目数据展示及客户交互功能\n"
 				},
 				{
-					"task": "ProjectFactory的参与人相关功能, after 7, 3d",
-					"costs": { "webDeveloper": [1, 3] },
+					"id":"t02008",
+					"task": "ProjectFactory的参与人相关功能, after t02007, 5d",
+					"costs": { "webDeveloper": [2, 5] },
 					"category": "TAsite",
 					"description": "实现ProjectFactory的应聘项目职位、领取项目任务、我参与的项目、项目进度提交、项目奖励记录等项目参与人的相关功能\n"
 				},
 				{
-					"task": "TAcontracts基础框开发架搭建, 2022-08-25, 3d",
-					"costs": { "contractDeveloper": [1, 3] },
+					"id":"t03001",
+					"task": "TAcontracts基础框开发架搭建, 2022-09-10, 5d",
+					"costs": { "contractDeveloper": [1, 5] },
 					"status": "working",
 					"category": "TAcontracts",
 					"description": "使用Hardhat+etherjs+openzeppelin+foundry构建合约开发的基础框架\n"
 				},
 				{
-					"task": "TADAO合约开发, after 11, 1d",
+					"id":"t03002",
+					"task": "TADAO合约开发, after t03001, 1d",
 					"costs": { "contractDeveloper": [1, 1] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TADAO的ERC20合约\n"
 				},
 				{
-					"task": "TANFT合约开发, after 12, 2d",
+					"id":"t03003",
+					"task": "TANFT合约开发, after t03002, 2d",
 					"costs": { "contractDeveloper": [1, 2] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TANFT的ERC721合约，并包含成就点数与徽章基础功能\n"
 				},
 				{
-					"task": "TAService合约开发, after 13, 6d",
+					"id":"t03004",
+					"task": "TAService合约开发, after t03003, 6d",
 					"costs": { "contractDeveloper": [1, 6] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TAService合约，包含发起提案、投票、验收项目成果等基础业务功能\n"
 				},
 				{
-					"task": "单元测试基础框架, after 7, 3d",
+					"id":"t04001",
+					"task": "单元测试基础框架, after t03003, 3d",
 					"costs": { "webDeveloper": [1, 3], "contractDeveloper": [1, 3] },
 					"status": "pending",
 					"category": "TAadmin",
 					"description": "使用jest搭建项目的单元测试基础框架，包含一些合约基础测试环境与用例\n"
 				},
 				{
-					"task": "TADAO+TANFT合约单元测试, after 14, 3d",
+					"id":"t04002",
+					"task": "TADAO+TANFT合约单元测试, after t04001, 3d",
 					"costs": { "contractDeveloper": [1, 3] },
 					"category": "TAadmin",
 					"description": "实现TADAO+TANFT合约的单元测试用例\n"
 				},
 				{
-					"task": "TAService合约单元测试, after 14, 9d",
+					"id":"t04003",
+					"task": "TAService合约单元测试, after t04002, 9d",
 					"costs": { "contractDeveloper": [1, 9] },
 					"category": "TAadmin",
 					"description": "TAService合约单元测试\n"
 				},
 				{
-					"task": "所有平台合约的集成测试, after 13, 20d",
+					"id":"t04004",
+					"task": "所有平台合约的集成测试, after t04003, 20d",
 					"costs": { "contractDeveloper": [2, 10] },
 					"category": "TAadmin",
 					"description": "准备完善的测试环境，完整测试各个实际应用场景\n"
 				},
 				{
-					"task": "合约配置管理, after 10, 2d",
+					"id":"t04005",
+					"task": "合约配置管理, after t02005, 2d",
 					"costs": { "webDeveloper": [1, 2], "contractDeveloper": [1, 2] },
 					"status": "pending",
 					"category": "TAadmin",
 					"description": "实现合约代码的公共部分配置生成与版本管理\n"
 				},
 				{
-					"task": "TAadminv0.1的合约部署与更新, after 6, 3d",
+					"id":"t04006",
+					"task": "TAadminv0.1的合约部署与更新, after t04005, 3d",
 					"costs": { "contractDeveloper": [1, 3] },
 					"status": "pending",
 					"category": "TAadmin",
 					"description": "在TAadmin v0.1中实现合约部署与更新\n"
 				},
 				{
-					"task": "TAserver基础框架搭建, after 13, 5d",
+					"id":"t05001",
+					"task": "TAserver基础框架搭建, after t03004, 5d",
 					"costs": { "serverDeveloper": [1, 5] },
 					"status": "pending",
 					"category": "TAserver",
 					"description": "使用Nestjs+prisma+ethers实现TAserver基础框架\n"
 				},
 				{
-					"task": "实现索引机器人, after 20, 10d",
+					"id":"t05002",
+					"task": "实现索引机器人, after t05001, 10d",
 					"costs": { "serverDeveloper": [1, 5], "contractDeveloper": [1, 5] },
 					"category": "TAserver",
 					"description": "实现索引机器人，定时爬取链上代币持仓人与交易记录等信息\n"
 				},
 				{
-					"task": "TAserver与TAsite集成整合, after 21, 10d",
+					"id":"t05003",
+					"task": "TAserver与TAsite集成整合, after t05002, 10d",
 					"costs": { "webDeveloper": [1, 5], "serverDeveloper": [1, 5] },
 					"category": "TAserver",
 					"description": "TAserver与TAsite集成整合API调用\n"
 				},
 				{
-					"task": "EVM主链商务对接, after 2, 15d",
+					"id":"t06001",
+					"task": "EVM主链商务对接, after t04006, 15d",
 					"costs": { "writer": [1, 5], "marketer": [1, 15] },
 					"status": "pending",
 					"category": "平台运营",
 					"description": "与各大EVM主链进行商务对接，获取项目资助与扶持资金\n"
 				},
 				{
-					"task": "市场推广, after 23, 10d",
+					"id":"t06002",
+					"task": "市场推广, after t06001, 10d",
 					"costs": { "writer": [1, 5], "marketer": [1, 5] },
 					"status": "pending",
 					"category": "平台运营",
 					"description": "开始市场推广宣传，招募平台合伙人\n"
 				},
 				{
-					"task": "正式启动001号项目, after 13, 10d",
+					"id":"t06003",
+					"task": "正式启动001号项目, after t06001, 10d",
 					"costs": { "writer": [1, 5], "marketer": [1, 5] , "trainer": [1, 5] },
 					"category": "平台运营",
 					"description": "对外公开，正式开始启动TADAO项目的开发工作\n"
 				},
 				{
-					"task": "平台第1阶段成果验收, after 22, 10d",
+					"id":"t06004",
+					"task": "平台第1阶段成果验收, after t04004, 10d",
 					"costs": { "tester": [1, 5], "marketer": [1, 5] , "trainer": [1, 5] },
 					"category": "平台运营",
 					"description": "开始平台第1阶段成果验收，并总结讨论下1阶段的工作计划\n"
 				},
 				{
-					"task": "功能测试与功能完善, after 26, 20d",
+					"id":"t06005",
+					"task": "功能测试与功能完善, after t06004, 20d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 15] , "serverDeveloper": [1, 5] },
 					"category": "平台运营",
 					"description": "完善平台功能细节,修复bug\n"
@@ -216,90 +244,105 @@
 			"description": "整合现有资源，实施TokenAgg DAO平台的运营推广宣传计划，并逐步拓展完善业务功能",
 			"tasks": [
 				{
+					"id":"t11001",
 					"task": "v2功能模块详细设计, 2022-10-01, 5d",
 					"costs": { "teamLeader": [1, 5], "marketer": [1, 3] },
 					"category": "详细设计",
 					"description": "根据市场及社区反馈，详细设计平台v2版本的功能模块\n"
 				},
 				{
-					"task": "支付结算模块开发, after 3, 10d",
+					"id":"t12001",
+					"task": "支付结算模块开发, after t12002, 10d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "完成支付结算模块开发\n"
 				},
 				{
-					"task": "信誉成就模块开发, after 1, 10d",
+					"id":"t12002",
+					"task": "信誉成就模块开发, after t11001, 10d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "完成信誉成就模块开发\n"
 				},
 				{
-					"task": "成就商城模块开发, after 3, 10d",
+					"id":"t12003",
+					"task": "成就商城模块开发, after t12002, 10d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "完成成就商城模块开发\n"
 				},
 				{
+					"id":"t12004",
 					"task": "项目治理模块开发, after 4, 10d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "完成项目治理模块开发\n"
 				},
 				{
-					"task": "实现定时合约job, after 1, 10d",
+					"id":"t13001",
+					"task": "实现定时合约job, after t01001, 10d",
 					"costs": { "tester": [1, 5], "contractDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAserver",
 					"description": "实现定时合约job，包含数据预计算、索引数据核对等\n"
 				},
 				{
+					"id":"t13002",
 					"task": "报表数据预计算, after 5, 10d",
 					"costs": { "tester": [1, 5], "contractDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAserver",
 					"description": "报表数据预计算，包含代币实时统计信息、地址持仓分析等\n"
 				},
 				{
+					"id":"t13003",
 					"task": "research替代去中心化服务, after 7, 15d",
 					"costs": { "tester": [1, 5], "contractDeveloper": [1, 10] , "serverDeveloper": [1, 5] },
 					"category": "TAserver",
 					"description": "研究第三方服务，寻找替代方案\n"
 				},
 				{
-					"task": "构建独立的TAadmin版本, after 1, 10d",
+					"id":"t14001",
+					"task": "构建独立的TAadmin版本, after t01001, 10d",
 					"costs": { "tester": [1, 5], "contractDeveloper": [1, 10] , "webDeveloper": [1, 5] },
 					"category": "TAadmin",
 					"description": "构建独立的TAadmin版本，提供基础的开发框架\n"
 				},
 				{
+					"id":"t14002",
 					"task": "实现链上数据查询分析, after 9, 10d",
 					"costs": { "tester": [1, 5], "contractDeveloper": [1, 10] , "webDeveloper": [1, 5] },
 					"category": "TAadmin",
 					"description": "实现定时合约job，包含数据预计算、索引数据核对等\n"
 				},
 				{
+					"id":"t14003",
 					"task": "实现个人Dashboard功能, after 10, 5d",
 					"costs": { "tester": [1, 5], "serverDeveloper": [1, 10] , "webDeveloper": [1, 5] },
 					"category": "TAadmin",
 					"description": "开发实现个人Dashboard功能\n"
 				},
 				{
+					"id":"t14004",
 					"task": "实现项目统计分析模块, after 10, 10d",
 					"costs": { "tester": [1, 5], "serverDeveloper": [1, 10] , "webDeveloper": [1, 5] },
 					"category": "TAadmin",
 					"description": "实现项目统计分析模块\n"
 				},
 				{
-					"task": "平台持续运营推广, after 1, 60d",
+					"id":"t15001",
+					"task": "平台持续运营推广, after t01001, 60d",
 					"costs": { "writer": [1, 5], "marketer": [1, 5] , "trainer": [1, 5] },
 					"category": "平台运营",
 					"description": "整合平台现有客户资源,进行平台持续运营推广\n"
 				},
 				{
+					"id":"t15002",
 					"task": "平台第2阶段成果验收, after 7, 10d",
 					"costs": { "tester": [1, 5], "marketer": [1, 5] , "trainer": [1, 5] },
 					"category": "平台运营",
 					"description": "开始平台第2阶段成果验收，并总结讨论下1阶段的工作计划\n"
 				},
 				{
+					"id":"t15003",
 					"task": "功能测试与功能完善, after 14, 36d",
 					"costs": { "tester": [1, 5], "webDeveloper": [1, 15] , "serverDeveloper": [1, 15] },
 					"category": "平台运营",

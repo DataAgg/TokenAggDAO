@@ -200,13 +200,13 @@ export class PlanTask {
 	public sumDays: number = 0;
 
 	constructor(
-		public no: number,
+		public id: string,
 		public title: string,
 		public category = "",
 		public description = "",
 		public comment = "",
 		public start?: string,
-		public dep?: number,
+		public dep?: string,
 		public costTime?: string
 	) {}
 }
@@ -264,15 +264,16 @@ export function parseProject(map: any): PlanProject {
 			if (tasks != null) {
 				var no = 1;
 				for (let t of tasks) {
+					var id = t["id"];
 					var items = t["task"].split(",");
-					var task = new PlanTask(no++, items[0].trim());
+					var task = new PlanTask(id, items[0].trim());
 					var index = task.title.indexOf(":");
 					if (index > 0) {
 						task.title = task.title.substring(0, index).trim();
 					}
 					if (items.length >= 3) {
 						if (items[1].trim().startsWith("after")) {
-							task.dep = parseInt(items[1].trim().substring(5).trim());
+							task.dep = items[1].trim().substring(5).trim();
 						} else {
 							task.start = items[1].trim();
 						}
@@ -306,7 +307,7 @@ export function parseProject(map: any): PlanProject {
 					f["price"] ?? 0
 				);
 				fee.comments = f["description"];
-				fee.status = f["status"]??'draft';
+				fee.status = f["status"] ?? "draft";
 				feeCategory.addItem(fee, fee.total);
 			}
 			planProject.feeCategories.push(feeCategory);
@@ -369,6 +370,7 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
 	codes = writeln(codes, "```mermaid");
 	codes = writeln(codes, "gantt");
 	codes = writeln(codes, "\taxisFormat  %m-%d");
+	codes = writeln(codes, "\texcludes weekends");
 	codes = writeln(codes, `\ttitle ${section.title}`);
 	var category = "";
 	for (var task of section.tasks) {
@@ -378,8 +380,8 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
 		}
 		codes = writeln(
 			codes,
-			`\t\t${task.title}\t:${taskName(i, task.no)},\t${
-				task.start ?? "after " + taskName(i, task.dep ?? 1)
+			`\t\t${task.title}\t:${taskName(task.id, task)},\t${
+				task.start ?? "after " + taskName(task.dep ?? "", task)
 			},\t${task.costTime}`
 		);
 		if (task.status == "working") {
@@ -396,6 +398,7 @@ export function genGantt(section: PlanSection, i: number = 1): PlanSectionData {
 	}
 	codes = writeln(codes, `\`\`\``);
 	planSectionData.mdGantt = codes;
+	// console.log(planSectionData.mdGantt);
 	planSectionData.summary = `时间：${day(section.start)} - ${day(
 		section.end
 	)}\t耗时：${section.days ?? 0}天`;
@@ -462,8 +465,14 @@ function day(t?: Date): string {
 	if (t == null) return "";
 	return dayjs(t, "yyyy/M/d").format("YYYY/MM/DD");
 }
-function taskName(m: number, t: number): string {
-	return `m${m}t${t}`;
+function taskName(id: string, task: PlanTask): string {
+	if (id == task.id && task.status == "working") {
+		return "crit, active, " + id.trim();
+	} else if (id == task.id && task.status == "finished") {
+		return "done, " + id.trim();
+	} else {
+		return id.trim();
+	}
 }
 function writeln(codes: string, text: string) {
 	return codes + text + "\n";

@@ -49,7 +49,7 @@
 									</div>
 									<div class="table-row-group">
 										<div class="table-row" v-for="(task, idx) in section.tasks.items" :key="idx">
-											<div class="wtablecell">{{task.no}}</div>
+											<div class="wtablecell">{{task.id}}</div>
 											<div class="wtablecell">{{task.category}}</div>
 											<div class="wtablecell">{{task.title}}
 												<div class="text-gray-500">{{task.description}}</div>
@@ -94,7 +94,7 @@
 										</td>
 									</tr>
 									<tr v-for="(task, idx) in sdata[1].tasks.items" :key="idx">
-										<td class="wtablecell">{{task.no}}</td>
+										<td class="wtablecell">{{task.id}}</td>
 										<td class="wtablecell" align="right">{{task.category}}</td>
 										<td class="wtablecell">{{task.title}}</td>
 										<td class="wtablecell font-medium">
@@ -235,7 +235,7 @@ onMounted(async () => {
 	projectData.value = pData;
 	planProject.value = pData.planProject;
 
-	console.log(projectData.value);
+	// console.log(projectData.value);
 });
 
 

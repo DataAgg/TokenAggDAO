@@ -269,40 +269,42 @@ flowchart LR
 ```mermaid
 gantt
 	axisFormat  %m-%d
+	excludes weekends
 	title 平台基础功能开发
 	section 详细设计
-		需求分析讨论	:m2t1,	2022-08-18,	3d
-		v1功能模块详细设计	:m2t2,	after m2t1,	5d
+		需求分析讨论	:done, t01001,	2022-08-18,	3d
+		v1功能模块详细设计	:done, t01002,	after t01001,	5d
 	section TAsite
-		TAsite基础框开发架搭建	:m2t3,	after m2t2,	5d
-		集成整合钱包交互基本功能	:m2t4,	after m2t3,	5d
-		实现web3.storage集成	:m2t5,	after m2t4,	5d
-		TAadmin V0.1基础功能实现	:m2t6,	after m2t4,	3d
-		ProjectFactory项目管理基础功能	:m2t7,	after m2t5,	3d
-		ProjectFactory数据展示与客户交互	:m2t8,	after m2t7,	3d
-		ProjectFactory的参与人相关功能	:m2t9,	after m2t7,	3d
+		TAsite基础框开发架搭建	:done, t02001,	after t01002,	5d
+		ProjectFactory项目静态原型	:done, t02002,	after t02001,	10d
+		集成整合钱包交互基本功能	:t02003,	after t02002,	5d
+		实现web3.storage集成	:t02004,	after t02008,	5d
+		TAadmin V0.1基础功能实现	:t02005,	after t02002,	3d
+		ProjectFactory项目管理基础功能	:t02006,	after t05003,	5d
+		ProjectFactory数据展示与客户交互	:t02007,	after t02006,	5d
+		ProjectFactory的参与人相关功能	:t02008,	after t02007,	5d
 	section TAcontracts
-		TAcontracts基础框开发架搭建	:m2t10,	2022-08-25,	3d
-		TADAO合约开发	:m2t11,	after m2t10,	1d
-		TANFT合约开发	:m2t12,	after m2t11,	2d
-		TAService合约开发	:m2t13,	after m2t12,	6d
+		TAcontracts基础框开发架搭建	:crit, active, t03001,	2022-09-10,	5d
+		TADAO合约开发	:t03002,	after t03001,	1d
+		TANFT合约开发	:t03003,	after t03002,	2d
+		TAService合约开发	:t03004,	after t03003,	6d
 	section TAadmin
-		单元测试基础框架	:m2t14,	after m2t3,	3d
-		TADAO+TANFT合约单元测试	:m2t15,	after m2t14,	3d
-		TAService合约单元测试	:m2t16,	after m2t14,	9d
-		所有平台合约的集成测试	:m2t17,	after m2t13,	20d
-		合约配置管理	:m2t18,	after m2t10,	2d
-		TAadminv0.1的合约部署与更新	:m2t19,	after m2t6,	3d
+		单元测试基础框架	:t04001,	after t03003,	3d
+		TADAO+TANFT合约单元测试	:t04002,	after t04001,	3d
+		TAService合约单元测试	:t04003,	after t04002,	9d
+		所有平台合约的集成测试	:t04004,	after t04003,	20d
+		合约配置管理	:t04005,	after t02005,	2d
+		TAadminv0.1的合约部署与更新	:t04006,	after t04005,	3d
 	section TAserver
-		TAserver基础框架搭建	:m2t20,	after m2t13,	5d
-		实现索引机器人	:m2t21,	after m2t20,	10d
-		TAserver与TAsite集成整合	:m2t22,	after m2t21,	10d
+		TAserver基础框架搭建	:t05001,	after t03004,	5d
+		实现索引机器人	:t05002,	after t05001,	10d
+		TAserver与TAsite集成整合	:t05003,	after t05002,	10d
 	section 平台运营
-		EVM主链商务对接	:m2t23,	after m2t2,	15d
-		市场推广	:m2t24,	after m2t23,	10d
-		正式启动001号项目	:m2t25,	after m2t13,	10d
-		平台第1阶段成果验收	:m2t26,	after m2t22,	10d
-		功能测试与功能完善	:m2t27,	after m2t26,	20d
+		EVM主链商务对接	:t06001,	after t04006,	15d
+		市场推广	:t06002,	after t06001,	10d
+		正式启动001号项目	:t06003,	after t06001,	10d
+		平台第1阶段成果验收	:t06004,	after t04004,	10d
+		功能测试与功能完善	:t06005,	after t06004,	20d
 ```
 TokenAgg DAO平台的MVP核心功能开发，包含智能合约、网站DApp及管理后台开发
 
