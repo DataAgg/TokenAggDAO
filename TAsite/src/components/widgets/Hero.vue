@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Picture from "@/components/core/Picture.vue";
-import hero from '@/assets/images/hero.jpg';
 const { t } = useI18n();
 
 </script>
@@ -34,7 +33,7 @@ const { t } = useI18n();
 				<div>
 					<div class="relative flex justify-center mb-8">
 						<div class="flex flex-col justify-center">
-							<Picture :src="hero" class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700" :widths="[400, 768]" sizes=" (max-width: 767px) 400px, 768px" alt="Hero Image"
+							<Picture src="/imgs/hero.jpg" class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700" :widths="[400, 768]" sizes=" (max-width: 767px) 400px, 768px" alt="Hero Image"
 								aspectRatio="16:9" />
 						</div>
 					</div>

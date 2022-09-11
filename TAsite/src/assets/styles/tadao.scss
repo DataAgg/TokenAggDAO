@@ -71,6 +71,9 @@
 			visibility: visible;
 		}
 	}
+	.table-header-group{
+		background-color: #bfdbfe;
+	}
 }
 
 .dark .md-body,
@@ -95,5 +98,8 @@
 	h3,
 	h4 {
 		color: #cbd5e1;
+	}
+	.table-header-group{
+		background-color: #4b5563;
 	}
 }

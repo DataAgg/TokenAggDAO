@@ -44,14 +44,21 @@
 					"description": "使用vite+vuejs+ethersjs+naive-ui+windicss实现网站的基础开发框架，包含CMS和DaReport\n"
 				},
 				{
-					"task": "集成整合钱包交互基本功能, after 3, 5d",
+					"task": "ProjectFactory项目静态原型, after 3, 10d",
+					"costs": { "webDeveloper": [1, 10] },
+					"status": "finished",
+					"category": "TAsite",
+					"description": "实现ProjectFactory展示TADAO项目的原型界面，包含项目详情管理页面及项目完整信息展示页面"
+				},
+				{
+					"task": "集成整合钱包交互基本功能, after 4, 5d",
 					"costs": { "webDeveloper": [1, 5], "contractDeveloper": [1, 3] },
 					"status": "pending",
 					"category": "TAsite",
 					"description": "实现基本的钱包交互功能，包含连接钱包、代币管理、投票等基本钱包交互\n"
 				},
 				{
-					"task": "实现web3.storage集成, after 4, 5d",
+					"task": "实现web3.storage集成, after 5, 5d",
 					"costs": { "webDeveloper": [1, 5] },
 					"category": "TAsite",
 					"description": "实现web3.storage交互功能，包含上传图片/数据文件、显示图片/json数据等\n"
@@ -65,7 +72,7 @@
 				{
 					"task": "ProjectFactory项目管理基础功能, after 5, 3d",
 					"costs": { "webDeveloper": [1, 3] },
-					"status": "finished",
+					"status": "pending",
 					"category": "TAsite",
 					"description": "实现ProjectFactory的项目方案编辑、发布项目、提交项目进度验收等项目管理部分基础功能\n"
 				},
@@ -84,33 +91,33 @@
 				{
 					"task": "TAcontracts基础框开发架搭建, 2022-08-25, 3d",
 					"costs": { "contractDeveloper": [1, 3] },
-					"status": "pending",
+					"status": "working",
 					"category": "TAcontracts",
 					"description": "使用Hardhat+etherjs+openzeppelin+foundry构建合约开发的基础框架\n"
 				},
 				{
-					"task": "TADAO合约开发, after 10, 1d",
+					"task": "TADAO合约开发, after 11, 1d",
 					"costs": { "contractDeveloper": [1, 1] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TADAO的ERC20合约\n"
 				},
 				{
-					"task": "TANFT合约开发, after 11, 2d",
+					"task": "TANFT合约开发, after 12, 2d",
 					"costs": { "contractDeveloper": [1, 2] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TANFT的ERC721合约，并包含成就点数与徽章基础功能\n"
 				},
 				{
-					"task": "TAService合约开发, after 12, 6d",
+					"task": "TAService合约开发, after 13, 6d",
 					"costs": { "contractDeveloper": [1, 6] },
 					"status": "pending",
 					"category": "TAcontracts",
 					"description": "开发实现TAService合约，包含发起提案、投票、验收项目成果等基础业务功能\n"
 				},
 				{
-					"task": "单元测试基础框架, after 3, 3d",
+					"task": "单元测试基础框架, after 7, 3d",
 					"costs": { "webDeveloper": [1, 3], "contractDeveloper": [1, 3] },
 					"status": "pending",
 					"category": "TAadmin",

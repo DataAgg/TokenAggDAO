@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Picture from "@/components/core/Picture.vue";
-import astronaut from '@/assets/images/astronaut.jpg';
 import { Icon } from '@iconify/vue';
 const { t } = useI18n();
 </script>
@@ -65,7 +64,7 @@ const { t } = useI18n();
 				</div>
 			</div>
 			<div class="relative">
-				<Picture class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700" :src="astronaut" :widths="[400, 768]"
+				<Picture class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700" src="/imgs/astronaut.jpg" :widths="[400, 768]"
 					sizes="(max-width: 768px) 100vw, 432px" alt="Astronaut" aspectRatio="432:768" />
 			</div>
 		</div>

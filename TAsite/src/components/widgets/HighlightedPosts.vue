@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import Picture from "@/components/core/Picture.vue";
-import hero from '@/assets/images/hero.jpg';
-import steps from '@/assets/images/steps.jpg';
-import colors from '@/assets/images/colors.jpg';
-import tools from '@/assets/images/tools.jpg';
 const { t } = useI18n();
 
 interface PostItem {
@@ -19,37 +15,37 @@ onMounted(() => {
 	postsData.value = [
 		{
 			title: 'OlympusDAO 资料收集',
-			img: '/imgs/ohm/image.png',
+			img: '/imgs/blogs/ohm1.png',
 			description: 'OlympusDAO 资料收集',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/7xvjiAj_M8wwB40VpokcObXVMaqMNQbiodCImesyaXA',
 		},
 		{
 			title: 'AMM和流动池',
-			img: '/imgs/blogs/amm2.png',
+			img: '/imgs/blogs/amm.png',
 			description: 'AMM和流动池',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/SIqkX69Qd8-yK_ncuu4yxAt2gG9bL7Mdvz2RdoOoWwI',
 		},
 		{
 			title: 'Ethereum stratum mining protocol v1.0.0',
-			img: steps,
+			img: '/imgs/steps.jpg',
 			description: 'Ethereum stratum mining protocol v1.0.0',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/y1h14JZFqQcGauRyAsvVPt4B8fpdahSuS602rY1i_3Q',
 		},
 		{
 			title: 'Stratum Mining Protocol(slushpool)',
-			img: hero,
+			img: '/imgs/hero.jpg',
 			description: 'Stratum Mining Protocol(slushpool)',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/LiCll74wWdNb1sofluZLZTtQe4mySQHMV58HM6VJ0OY',
 		},
 		{
 			title: '以太坊stratum协议原理',
-			img: colors,
+			img: '/imgs/colors.jpg',
 			description: '以太坊stratum协议原理',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/aXZtJGRPeEqHa1AoXxV36Da-kO7rkQdOxQdaECsJ7MM',
 		},
 		{
 			title: 'Network protocol specification - Stratum platform(draft)',
-			img: tools,
+			img: '/imgs/tools.jpg',
 			description: 'Stratum Network protocol specification',
 			url: 'https://mirror.xyz/0x94C0e8Cf59e644fA76d4Fa83164B9F2030d07F31/5KV88nR8e6jjcRH7SD_Jc_oiCB-szCaZih_sZmng_gw',
 		},

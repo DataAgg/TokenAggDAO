@@ -57,6 +57,7 @@ feetable:
   costMan: 人员
   costTime: 天数
   costTotal: 价格
+  status: 状态
 feetable2:
   no: ID
   category: 细项
